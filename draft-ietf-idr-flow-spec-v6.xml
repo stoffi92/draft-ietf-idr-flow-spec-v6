@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+<!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY RFC2460 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2460.xml">
+<!ENTITY RFC2474 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2474.xml">
+<!ENTITY RFC4271 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4271.xml">
+<!ENTITY RFC5492 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5492.xml">
+<!ENTITY RFC5095 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5095.xml">
+<!ENTITY RFC5575 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5575.xml">
+<!ENTITY RFC5701 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5701.xml">
+<!ENTITY RFC6437 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6437.xml">
+<!ENTITY RFC7153 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7153.xml">
+]>
+<?rfc toc="yes" ?>
+<?rfc symrefs="yes" ?>
+<?rfc sortrefs="yes"?>
+<?rfc compact="yes" ?>
+<?rfc subcompact="no" ?>
+<?rfc iprnotified="no" ?>
+<?rfc strict="no" ?>
+<rfc category="std" docName="draft-ietf-idr-flow-spec-v6-10.txt"  ipr="trust200902">
+  <front>
+  <title abbrev="FlowSpec V6">Dissemination of Flow Specification Rules for IPv6</title>
+   <author role="editor" fullname="Christoph Loibl" initials="C.L."
+           surname="Loibl">
+     <organization>Next Layer Communications</organization>
+     <address>
+       <postal>
+         <street>Mariahilfer Guertel 37/7</street>
+         <city>Vienna</city>
+         <region></region>
+         <code>1150</code>
+         <country>AT</country>
+       </postal>
+       <phone>+43 664 1176414</phone>
+       <email>cl@tix.at</email>
+     </address>
+   </author>
+      <author fullname='Robert Raszuk' initials='R' surname='Raszuk' role="editor">
+    <organization>Bloomberg LP</organization>
+    <address>
+        <postal>
+            <street>731 Lexington Ave </street>
+            <city>New York City</city>
+            <region>NY</region>
+            <code>10022</code>
+            <country>USA</country>
+        </postal>
+        <email>robert@raszuk.net</email>
+    </address>
+    </author>
+		<author role="editor" fullname="Susan Hares" initials="S" surname="Hares">
+      <organization>Huawei</organization>
+      <address>
+        <postal>
+          <street>7453 Hickory Hill</street>
+          <city>Saline</city>
+          <region>MI</region>
+          <code>48176</code>
+          <country>USA</country>
+        </postal>
+        <email>shares@ndzh.com</email>
+      </address>
+    </author>
+
+    <date year="2017" />
+    <area>Routing Area</area>
+    <workgroup>IDR Working Group</workgroup>
+    <keyword>RFC</keyword>
+    <keyword>Request for Comments</keyword>
+    <keyword>I-D</keyword>
+    <keyword>Internet-Draft</keyword>
+    <keyword>BGP Flow Flow Specification</keyword>
+	<keyword>V6</keyword>
+    <abstract>
+   <t>Dissemination of Flow Specification Rules [RFC5575] provides a
+   protocol extension for propagation of traffic flow information for
+   the purpose of rate limiting or filtering.  The [RFC5575] specifies
+   those extensions for IPv4 protocol data packets.
+   </t>
+   <t>
+   This specification extends the current [RFC5575] and defines changes
+   to the original document in order to make it also usable and
+   applicable to IPv6 data packets.
+   </t>
+    </abstract>
+  </front>
+  <middle>
+     <section anchor="intro" title="Introduction">
+	 <t>The growing amount of IPv6 traffic in private and public networks
+   requires the extension of tools used in the IPv4 only networks to be
+   also capable of supporting IPv6 data packets.
+  </t>
+  <t>
+   In this document authors analyze the differences of IPv6 <xref target="RFC2460"></xref>
+   flows description from those of traditional IPv4 packets and propose
+   subset of new encoding formats to enable Dissemination of Flow
+   Specification Rules <xref target="RFC5575"></xref> for IPv6.
+ </t>
+ <t>
+   This specification should be treated as an extension of base
+   <xref target="RFC5575"></xref> specification and not its replacement.  It only defines the
+   delta changes required to support IPv6 while all other definitions
+   and operation mechanisms of Dissemination of Flow Specification Rules
+   will remain in the main specification and will not be repeated here.
+   </t>
+   </section>
+   <section title="IPv6 Flow Specification encoding in BGP">
+   <t>
+   The [RFC5575] defines a new SAFIs (133 for IPv4) and (134 for VPNv4)
+   applications in order to carry corresponding to each such application
+   flow specification.
+   </t>
+   <t>
+   This document will redefine the <xref target="RFC5575"></xref> SAFIs in order to make them
+   AFI specific and applicable to both IPv4 and IPv6 applications.
+   </t>
+   <t>
+   The following changes are defined:
+   <list>
+   <t> "SAFI 133 for IPv4 dissemination of flow specification rules" to
+      now be defined as "SAFI 133 for dissemination of unicast flow
+      specification rules"
+   </t>
+   <t> "SAFI 134 for VPNv4 dissemination of flow specification rules" to
+      now be defined as "SAFI 134 for dissemination of L3VPN flow
+      specification rules"
+   </t>
+   </list>
+   </t>
+   <t>
+   For both SAFIs the indication to which address family they are
+   referring to will be recognized by AFI value (AFI=1 for IPv4 or
+   VPNv4, AFI=2 for IPv6 and VPNv6 respectively).  Such modification is
+   fully backwards compatible with existing implementation and
+   production deployments.
+   </t>
+   <t>It needs to be observed that such choice of proposed encoding is
+   compatible with filter validation against routing reachability
+   information as described in section 6 of RFC5575.  Validation tables
+   will now be performed according to the following rules.
+   <list>
+    <t>Flow specification received over AFI/SAFI=1/133 will be validated
+      against routing reachability received over AFI/SAFI=1/1
+	  </t>
+	 <t>Flow specification received over AFI/SAFI=1/134 will be validated
+      against routing reachability received over AFI/SAFI=1/128
+	 </t>
+     <t> Flow specification received over AFI/SAFI=2/133 will be validated
+      against routing reachability received over AFI/SAFI=2/1
+	 </t>
+     <t>Flow specification received over AFI/SAFI=2/134 will be validated
+      against routing reachability received over AFI/SAFI=2/128
+	 </t>
+   </list>
+   </t>
+   </section>
+   <section title="IPv6 Flow Specification types changes">
+   <t> The following component types are redefined or added for the purpose
+   of accommodating new IPv6 header encoding.  Unless otherwise stated
+   all other types as defined in <xref target="RFC5575"></xref> apply to IPv6 packets as is.
+   <list style="hanging">
+   <t hangText="Type 1 - Destination IPv6 Prefix ">
+       <list>
+	   <t>Encoding: &lt;type (1 octet), prefix length (1 octet), prefix offset
+      (1 octet), prefix&gt;
+	  </t>
+	  <t>Function: Defines the destination prefix to match.  Prefix offset has been
+      defined to allow for flexible matching on part of the IPv6 address
+      where we want to skip (don't care) of N first bits of the address.
+      This can be especially useful where part of the IPv6 address
+      consists of an embedded IPv4 address and matching needs to happen
+      only on the embedded IPv4 address.  The encoded prefix contains
+      enough octets for the bits used in matching (length minus offset
+      bits).
+	  </t>
+	  </list>
+	</t>
+	 <t hangText="Type 2 - Source IPv6 Prefix ">
+     <list>
+	   <t>Encoding: &lt;type (1 octet), prefix length (1 octet), prefix offset
+      (1 octet), prefix&gt;
+      </t>
+	  <t>Function: Defines the source prefix to match.  Prefix offset has been
+      defined to allow for flexible matching on part of the IPv6 address
+      where we want to skip (don't care) of N first bits of the address.
+      This can be especially useful where part of the IPv6 address
+      consists of an embedded IPv4 address and matching needs to happen
+      only on the embedded IPv4 address.  The encoded prefix contains
+      enough octets for the bits used in matching (length minus offset
+      bits)
+	  </t>
+	  </list>
+	  </t>
+   	 <t hangText="Type 3 - Next Header">
+     <list>
+	   <t>Encoding: &lt;type (1 octet), [op, value]+&gt;
+      </t>
+	  <t>Function: Contains a set of {operator, value} pairs that are used to match
+      the last Next Header value octet in IPv6 packets.  The operator
+      byte is encoded as specified in component type 3 of <xref target="RFC5575"></xref>.
+      </t>
+	  <t>Note: While IPv6 allows for more then one Next Header field in the
+	  packet the main goal of Type 3 flow specification component is to
+      match on the subsequent IP protocol value.  Therefor the
+      definition is limited to match only on last Next Header field in
+      the packet.
+	  </t>
+	  </list>
+	  </t>
+     <t hangText="Type 12 - Fragment">
+     <list>
+	   <t>  Encoding: &lt;type (1 octet), [op, bitmask]+&gt;
+      </t>
+	  <t>
+      Uses bitmask operand format defined above.  Bit-7 is not used and
+      MUST be 0 to provide backwards-compatibility with the definition
+      in <xref target="RFC5575"></xref>
+      </t>
+	  <t>Bitmast operand format:
+	  <figure>
+	  <artwork>
+         0   1   2   3   4   5   6   7
+         +---+---+---+---+---+---+---+---+
+         |   Reserved    |LF |FF |IsF| 0 |
+         +---+---+---+---+---+---+---+---+
+	  </artwork>
+	  </figure>
+	  </t>
+	  <t>
+       Bitmask values:
+	  <list style="symbols">
+	  <t>Bit 6 - Is a fragment (IsF)</t>
+	  <t>Bit 5 - First fragment (FF)</t>
+	  <t>Bit 4 - Last fragment (LF)</t>
+	  </list>
+       </t>
+	  </list>
+	  </t>
+     <t hangText="Type 13 - Flow Label (New type)">
+	  <list>
+	   <t>Encoding: &lt;type (1 octet), [op, bitmask]+&gt;
+      </t>
+	  <t> Function:  Contains a set of {operator, value} pairs that are used to match
+      the 20-bit Flow Label field <xref target="RFC2460"></xref>.  The operator byte is
+      encoded as specified in the component type 3 of <xref target="RFC5575"></xref>.  Values
+      are encoded as 1-, 2-, or 4- byte quantities.
+	  </t>
+	  </list>
+	 </t>
+	</list>
+	</t>
+	<t> The following example demonstrates the new prefix encoding for: "all
+    packets to ::1234:5678:9A00:0/64-104 from 192::/8 and port {range
+   [137, 139] or 8080}".  In the destination prefix, "80-" represents
+   the prefix offset of 80 bits.  In this exmaple, the 0 offset is
+   omitted from the printed source prefix.
+	<figure>
+	<artwork>
+ +-------------------------+------------+-----------------------+
+ | destination             | source     | port                  |
+ +-------------------------+----------- +-----------------------+
+ |0x01 68 50 12 34 56 78 9A| 02 00 08 c0|04 03 89 45 8b 91 1f 90|
+ +-------------------------+------------+-----------------------+
+	</artwork>
+	</figure>
+	</t>
+	<section title="Order of Traffic Filtering Rules">
+	<t>
+	The orignal definition for the order of traffic filtering rules can
+    be reused with new consideration for the IPv6 prefix offset.  As long
+    as the offsets are equal, the comparison is the same, retaining
+    longest-prefix-match semantics.  If the offsets are not equal, the
+    lowest offset has precedence, as this flow matches the most
+    significant bit.
+	</t>
+	<t>
+	<figure>
+	<artwork>
+    Pseudocode
+    flow_rule_v6_cmp (a, b)
+    {
+     comp1 = next_component(a);
+     comp2 = next_component(b);
+     while (comp1 || comp2) {
+       // component_type returns infinity on end-of-list
+         if (component_type(comp1) &lt; component_type(comp2)) {
+             return A_HAS_PRECEDENCE;
+         }
+         if (component_type(comp1) &gt; component_type(comp2)) {
+             return B_HAS_PRECEDENCE;
+         }
+
+         if (component_type(comp1) == IPV6_DESTINATION || IPV6_SOURCE) {
+           // offset not equal, lowest offset has precedence
+           // offset equal ...
+           common_len = MIN(prefix_length(comp1), prefix_length(comp2));
+           cmp = prefix_compare(comp1, comp2, offset, common_len);
+           // not equal, lowest value has precedence
+           // equal, longest match has precedence
+          } else {
+           common =
+            MIN(component_length(comp1), component_length(comp2));
+            cmp = memcmp(data(comp1), data(comp2), common);
+            // not equal, lowest value has precedence
+            // equal, longest string has precedence
+           }
+      }
+
+          return EQUAL;
+    }
+	</artwork>
+	</figure>
+	</t>
+	</section>
+	</section>
+	<section title="IPv6 Flow Specification Traffic Filtering Action changes">
+	<t>One of the traffic filtering actions which can be expressed by BGP
+   extended community is defined in <xref target="RFC5575"></xref> as traffic-marking.
+   Another traffic filtering action defined in <xref target="RFC5575"></xref> as a BGP
+   extended community is redirect.  To allow an IPv6 address specific
+   route-target, a new traffic action IPv6 address specific extended
+   community is provided.
+   </t>
+   <t>Therefore, for the purpose of making it compatible with IPv6 header action
+   expressed by presence of the extended community the following text
+   in <xref target="RFC5575"></xref> has been modified to read:
+   <list style="hanging">
+    <t hangText="Traffic Marking (0x8009): "> The traffic marking extended community instructs a
+   system to modify first 6 bits of Traffic Class field as (recommended
+   by <xref target="RFC2474"></xref>) of a transiting IPv6 packet to the corresponding value.
+   This extended community is encoded as a sequence of 42 zero bits
+   followed by the 6 bits overwriting DSCP portion of Traffic Class
+   value.
+   </t>
+   <t hangText="Redirect-IPv6 (0x800B):"> redirect IPv6 address specific extended community
+   allows the traffic to be redirected to a VRF routing instance that
+   lists the specified IPv6 address specific route-target in its import
+   policy.  If several local instances match this criteria, the choice
+   between them is a local matter (for example, the instance with the
+   lowest Route Distinguisher value can be elected).  This extended
+   community uses the same encoding as the IPv6 address specific Route
+   Target extended community <xref target="RFC5701"></xref>.
+   </t>
+   </list>
+   </t>
+	</section>
+   <section title="Security Considerations">
+   <t>  No new security issues are introduced to the BGP protocol by this
+   specification over the security concerins in
+   <xref target="RFC5575"></xref>
+   </t>
+   </section>
+   <section anchor="IANA" title="IANA Considerations">
+   <t>This section complies with <xref target="RFC7153"></xref>
+   </t>
+   <t>
+   IANA is requested to rename currently defined SAFI 133 and SAFI 134
+   per [RFC5575] to read:
+   <figure>
+   <artwork>
+    133     Dissemination of flow specification rules
+    134     L3VPN dissemination of flow specification rules
+   </artwork>
+   </figure>
+   </t>
+    <t>
+   IANA is requested to create and maintain a new registry entitled:
+   "Flow Spec IPv6 Component Types".  The initial values are:
+    <figure>
+	<artwork>
+   Type     Description                 RFC
+   ---------------------------------   ---------
+   Type 1 - Destination IPv6 Prefix   [this draft]
+   Type 2 - Source IPv6 Prefix        [this draft]
+   Type 3 - Next Header               [this draft]
+   Type 4 - Port                      [this draft]
+   Type 5 - Destination port          [this draft]
+   Type 6 - Source port               [this draft]
+   Type 7 - ICMP type                 [this draft]
+   Type 8 - ICMP code                 [this draft]
+   Type 9 - TCP flags                 [this draft]
+   Type 10 - Packet length            [this draft]
+   Type 11 - DSCP                     [this draft]
+   Type 12 - Fragment                 [this draft]
+   Type 13 - Flow Label               [this draft]
+	</artwork>
+	</figure>
+   </t>
+ </section>
+ <section title="authors">
+     <t>NEEDS EDITING!</t>
+
+     <!--
+     <author>
+ 	 <title abbrev="FlowSpec V6">Dissemination of Flow Specification Rules for IPv6</title>
+	 <author fullname=" Danny McPherson " initials="D" surname="McPherson">
+      <organization>Verisign, Inc.</organization>
+      <address>
+        <postal>
+          <street></street>
+          <city></city>
+          <region></region>
+          <code></code>
+          <country></country>
+        </postal>
+        <email>dmcpherson@verisign.com</email>
+      </address>
+    </author>
+	<author fullname="Burjiz Pithawala" initials="B" surname="Pithawala">
+      <organization>Individual</organization>
+      <address>
+        <postal>
+          <street></street>
+          <city></city>
+          <region></region>
+          <code></code>
+          <country></country>
+        </postal>
+        <email>burjizp@gmail.com</email>
+      </address>
+	   </author>
+	<author fullname="Andy Karch" initials="A" surname="Karch">
+      <organization>Cisco Systems</organization>
+      <address>
+        <postal>
+          <street>170 West Tasman Drive</street>
+          <city>San Jose</city>
+          <region>CA</region>
+          <code>95134</code>
+          <country>USA</country>
+        </postal>
+        <email>akarch@cisco.com</email>
+      </address>
+    </author>
+    -->
+ </section>
+ <section title="Acknowledgements">
+ <t>Authors would like to thank Pedro Marques, Hannes Gredler and Bruno
+   Rijsman, Brian Carpenter, and Thomas Mangin for their valuable input.
+   </t>
+ </section>
+  </middle>
+  <back>
+    <references title="Normative References">
+      &RFC2119;
+	  &RFC2460;
+	  &RFC2474;
+	  &RFC4271;
+	  &RFC5492;
+	  &RFC5575;
+	  &RFC6437;
+	  &RFC5701;
+	  &RFC7153;
+	</references>
+	<references title="Informative References">
+	&RFC5095;
+    </references>
+  </back>
+</rfc>
