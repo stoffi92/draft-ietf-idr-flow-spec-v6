@@ -390,57 +390,46 @@
 	</figure>
    </t>
  </section>
- <section title="authors">
-     <t>NEEDS EDITING!</t>
-
-     <!--
-     <author>
- 	 <title abbrev="FlowSpec V6">Dissemination of Flow Specification Rules for IPv6</title>
-	 <author fullname=" Danny McPherson " initials="D" surname="McPherson">
-      <organization>Verisign, Inc.</organization>
-      <address>
-        <postal>
-          <street></street>
-          <city></city>
-          <region></region>
-          <code></code>
-          <country></country>
-        </postal>
-        <email>dmcpherson@verisign.com</email>
-      </address>
-    </author>
-	<author fullname="Burjiz Pithawala" initials="B" surname="Pithawala">
-      <organization>Individual</organization>
-      <address>
-        <postal>
-          <street></street>
-          <city></city>
-          <region></region>
-          <code></code>
-          <country></country>
-        </postal>
-        <email>burjizp@gmail.com</email>
-      </address>
-	   </author>
-	<author fullname="Andy Karch" initials="A" surname="Karch">
-      <organization>Cisco Systems</organization>
-      <address>
-        <postal>
-          <street>170 West Tasman Drive</street>
-          <city>San Jose</city>
-          <region>CA</region>
-          <code>95134</code>
-          <country>USA</country>
-        </postal>
-        <email>akarch@cisco.com</email>
-      </address>
-    </author>
-    -->
- </section>
  <section title="Acknowledgements">
  <t>Authors would like to thank Pedro Marques, Hannes Gredler and Bruno
    Rijsman, Brian Carpenter, and Thomas Mangin for their valuable input.
    </t>
+ </section>
+ <section title="Contributors">
+     <t>
+<figure>
+<artwork>
+Danny McPherson
+Verisign, Inc.
+
+Email: dmcpherson@verisign.com
+
+</artwork>
+</figure>
+</t><t>
+<figure>
+<artwork>
+Burjiz Pithawala
+Individual
+
+Email: burjizp@gmail.com
+
+</artwork>
+</figure>
+</t><t>
+<figure>
+<artwork>
+Andy Karch
+Cisco Systems
+170 West Tasman Drive
+San Jose, CA  95134
+USA
+
+Email: akarch@cisco.com
+
+</artwork>
+</figure>
+     </t>
  </section>
   </middle>
   <back>
