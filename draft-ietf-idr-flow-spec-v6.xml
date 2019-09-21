@@ -7,10 +7,11 @@
 <!ENTITY RFC4271 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4271.xml">
 <!ENTITY RFC5492 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5492.xml">
 <!ENTITY RFC5095 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5095.xml">
-<!ENTITY RFC5575 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5575.xml">
 <!ENTITY RFC5701 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5701.xml">
 <!ENTITY RFC6437 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6437.xml">
 <!ENTITY RFC7153 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7153.xml">
+<!ENTITY I-D.ietf-idr-rfc5575bis SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-idr-rfc5575bis.xml">
+
 ]>
 <?rfc toc="yes" ?>
 <?rfc symrefs="yes" ?>
@@ -74,13 +75,13 @@
     <keyword>BGP Flow Flow Specification</keyword>
 	<keyword>V6</keyword>
     <abstract>
-   <t>Dissemination of Flow Specification Rules [RFC5575] provides a
+   <t>Dissemination of Flow Specification Rules <xref target="I-D.ietf-idr-rfc5575bis" /> provides a
    protocol extension for propagation of traffic flow information for
-   the purpose of rate limiting or filtering.  The [RFC5575] specifies
+   the purpose of rate limiting or filtering.  The <xref target="I-D.ietf-idr-rfc5575bis" /> specifies
    those extensions for IPv4 protocol data packets.
    </t>
    <t>
-   This specification extends the current [RFC5575] and defines changes
+   This specification extends the current <xref target="I-D.ietf-idr-rfc5575bis" /> and defines changes
    to the original document in order to make it also usable and
    applicable to IPv6 data packets.
    </t>
@@ -96,11 +97,11 @@
    In this document authors analyze the differences of IPv6 <xref target="RFC2460"></xref>
    flows description from those of traditional IPv4 packets and propose
    subset of new encoding formats to enable Dissemination of Flow
-   Specification Rules <xref target="RFC5575"></xref> for IPv6.
+   Specification Rules <xref target="I-D.ietf-idr-rfc5575bis" /> for IPv6.
  </t>
  <t>
    This specification should be treated as an extension of base
-   <xref target="RFC5575"></xref> specification and not its replacement.  It only defines the
+   <xref target="I-D.ietf-idr-rfc5575bis" /> specification and not its replacement.  It only defines the
    delta changes required to support IPv6 while all other definitions
    and operation mechanisms of Dissemination of Flow Specification Rules
    will remain in the main specification and will not be repeated here.
@@ -108,12 +109,12 @@
    </section>
    <section title="IPv6 Flow Specification encoding in BGP">
    <t>
-   The [RFC5575] defines a new SAFIs (133 for IPv4) and (134 for VPNv4)
+   The <xref target="I-D.ietf-idr-rfc5575bis" /> defines a new SAFIs (133 for IPv4) and (134 for VPNv4)
    applications in order to carry corresponding to each such application
    flow specification.
    </t>
    <t>
-   This document will redefine the <xref target="RFC5575"></xref> SAFIs in order to make them
+   This document will redefine the <xref target="I-D.ietf-idr-rfc5575bis" /> SAFIs in order to make them
    AFI specific and applicable to both IPv4 and IPv6 applications.
    </t>
    <t>
@@ -138,7 +139,7 @@
    </t>
    <t>It needs to be observed that such choice of proposed encoding is
    compatible with filter validation against routing reachability
-   information as described in section 6 of RFC5575.  Validation tables
+   information as described in section 6 of <xref target="I-D.ietf-idr-rfc5575bis" />.  Validation tables
    will now be performed according to the following rules.
    <list>
     <t>Flow specification received over AFI/SAFI=1/133 will be validated
@@ -159,7 +160,7 @@
    <section title="IPv6 Flow Specification types changes">
    <t> The following component types are redefined or added for the purpose
    of accommodating new IPv6 header encoding.  Unless otherwise stated
-   all other types as defined in <xref target="RFC5575"></xref> apply to IPv6 packets as is.
+   all other types as defined in <xref target="I-D.ietf-idr-rfc5575bis" /> apply to IPv6 packets as is.
    <list style="hanging">
    <t hangText="Type 1 - Destination IPv6 Prefix ">
        <list>
@@ -199,7 +200,7 @@
       </t>
 	  <t>Function: Contains a set of {operator, value} pairs that are used to match
       the last Next Header value octet in IPv6 packets.  The operator
-      byte is encoded as specified in component type 3 of <xref target="RFC5575"></xref>.
+      byte is encoded as specified in component type 3 of <xref target="I-D.ietf-idr-rfc5575bis" />.
       </t>
 	  <t>Note: While IPv6 allows for more then one Next Header field in the
 	  packet the main goal of Type 3 flow specification component is to
@@ -216,7 +217,7 @@
 	  <t>
       Uses bitmask operand format defined above.  Bit-7 is not used and
       MUST be 0 to provide backwards-compatibility with the definition
-      in <xref target="RFC5575"></xref>
+      in <xref target="I-D.ietf-idr-rfc5575bis" />
       </t>
 	  <t>Bitmast operand format:
 	  <figure>
@@ -244,7 +245,7 @@
       </t>
 	  <t> Function:  Contains a set of {operator, value} pairs that are used to match
       the 20-bit Flow Label field <xref target="RFC2460"></xref>.  The operator byte is
-      encoded as specified in the component type 3 of <xref target="RFC5575"></xref>.  Values
+      encoded as specified in the component type 3 of <xref target="I-D.ietf-idr-rfc5575bis" />.  Values
       are encoded as 1-, 2-, or 4- byte quantities.
 	  </t>
 	  </list>
@@ -317,15 +318,15 @@
 	</section>
 	<section title="IPv6 Flow Specification Traffic Filtering Action changes">
 	<t>One of the traffic filtering actions which can be expressed by BGP
-   extended community is defined in <xref target="RFC5575"></xref> as traffic-marking.
-   Another traffic filtering action defined in <xref target="RFC5575"></xref> as a BGP
+   extended community is defined in <xref target="I-D.ietf-idr-rfc5575bis" /> as traffic-marking.
+   Another traffic filtering action defined in <xref target="I-D.ietf-idr-rfc5575bis" /> as a BGP
    extended community is redirect.  To allow an IPv6 address specific
    route-target, a new traffic action IPv6 address specific extended
    community is provided.
    </t>
    <t>Therefore, for the purpose of making it compatible with IPv6 header action
    expressed by presence of the extended community the following text
-   in <xref target="RFC5575"></xref> has been modified to read:
+   in <xref target="I-D.ietf-idr-rfc5575bis" /> has been modified to read:
    <list style="hanging">
     <t hangText="Traffic Marking (0x8009): "> The traffic marking extended community instructs a
    system to modify first 6 bits of Traffic Class field as (recommended
@@ -349,7 +350,7 @@
    <section title="Security Considerations">
    <t>  No new security issues are introduced to the BGP protocol by this
    specification over the security concerins in
-   <xref target="RFC5575"></xref>
+   <xref target="I-D.ietf-idr-rfc5575bis" />
    </t>
    </section>
    <section anchor="IANA" title="IANA Considerations">
@@ -357,7 +358,7 @@
    </t>
    <t>
    IANA is requested to rename currently defined SAFI 133 and SAFI 134
-   per [RFC5575] to read:
+   per <xref target="I-D.ietf-idr-rfc5575bis" /> to read:
    <figure>
    <artwork>
     133     Dissemination of flow specification rules
@@ -449,10 +450,10 @@
 	  &RFC2474;
 	  &RFC4271;
 	  &RFC5492;
-	  &RFC5575;
 	  &RFC6437;
 	  &RFC5701;
 	  &RFC7153;
+      &I-D.ietf-idr-rfc5575bis;
 	</references>
 	<references title="Informative References">
 	&RFC5095;
