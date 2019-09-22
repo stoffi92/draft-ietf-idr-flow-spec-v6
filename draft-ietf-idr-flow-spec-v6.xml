@@ -22,7 +22,7 @@
 <?rfc strict="no" ?>
 <rfc category="std" docName="draft-ietf-idr-flow-spec-v6-10.txt"  ipr="trust200902">
   <front>
-  <title abbrev="FlowSpec V6">Dissemination of Flow Specification Rules for IPv6</title>
+  <title abbrev="IPv6 Flow Specification">Dissemination of Flow Specification Rules for IPv6</title>
    <author role="editor" fullname="Christoph Loibl" initials="C.L."
            surname="Loibl">
      <organization>Next Layer Communications</organization>
@@ -75,7 +75,7 @@
     <keyword>BGP Flow Flow Specification</keyword>
 	<keyword>V6</keyword>
     <abstract>
-   <t>Dissemination of Flow Specification Rules <xref target="I-D.ietf-idr-rfc5575bis" /> provides a
+   <t><xref target="I-D.ietf-idr-rfc5575bis" format="title" /> <xref target="I-D.ietf-idr-rfc5575bis" /> provides a
    protocol extension for propagation of traffic flow information for
    the purpose of rate limiting or filtering.  The <xref target="I-D.ietf-idr-rfc5575bis" /> specifies
    those extensions for IPv4 protocol data packets.
@@ -157,50 +157,44 @@
    </list>
    </t>
    </section>
-   <section title="IPv6 Flow Specification types changes">
-   <t> The following component types are redefined or added for the purpose
-   of accommodating new IPv6 header encoding.  Unless otherwise stated
-   all other types as defined in <xref target="I-D.ietf-idr-rfc5575bis" /> apply to IPv6 packets as is.
-   <list style="hanging">
-   <t hangText="Type 1 - Destination IPv6 Prefix ">
-       <list>
-	   <t>Encoding: &lt;type (1 octet), prefix length (1 octet), prefix offset
-      (1 octet), prefix&gt;
+   <section title="IPv6 Flow Specification components">
+   <t>The following components are redefined or added for the purpose
+   of accommodating the IPv6 header encoding. Unless otherwise specified
+   all other components defined in <xref target="I-D.ietf-idr-rfc5575bis" />
+   Section 4.2.2 also apply to IPv6 Flow Specification.
+   </t>
+   <section anchor="type_1" title="Type 1 - Destination IPv6 Prefix" toc="include">
+	   <t>Encoding: &lt;type (1 octet), length (1 octet), offset (1 octet), prefix (variable)&gt;
 	  </t>
-	  <t>Function: Defines the destination prefix to match.  Prefix offset has been
+	  <t>Defines the destination prefix to match.  The offset has been
       defined to allow for flexible matching on part of the IPv6 address
-      where we want to skip (don't care) of N first bits of the address.
+      where it is required to skip (don't care) of N first bits of the address.
       This can be especially useful where part of the IPv6 address
       consists of an embedded IPv4 address and matching needs to happen
-      only on the embedded IPv4 address.  The encoded prefix contains
+      only on the embedded IPv4 address. The encoded prefix contains
       enough octets for the bits used in matching (length minus offset
       bits).
 	  </t>
-	  </list>
-	</t>
-	 <t hangText="Type 2 - Source IPv6 Prefix ">
-     <list>
-	   <t>Encoding: &lt;type (1 octet), prefix length (1 octet), prefix offset
-      (1 octet), prefix&gt;
+   </section>
+   <section anchor="type_2" title="Type 2 - Source IPv6 Prefix" toc="include">
+	   <t>Encoding: &lt;type (1 octet), length (1 octet), offset
+      (1 octet), prefix (variable)&gt;
       </t>
-	  <t>Function: Defines the source prefix to match.  Prefix offset has been
-      defined to allow for flexible matching on part of the IPv6 address
-      where we want to skip (don't care) of N first bits of the address.
-      This can be especially useful where part of the IPv6 address
-      consists of an embedded IPv4 address and matching needs to happen
-      only on the embedded IPv4 address.  The encoded prefix contains
-      enough octets for the bits used in matching (length minus offset
-      bits)
+	  <t>Defines the source prefix to match. The length, offset and prefix
+          are the same as in <xref target="type_1" />
 	  </t>
-	  </list>
-	  </t>
-   	 <t hangText="Type 3 - Next Header">
-     <list>
-	   <t>Encoding: &lt;type (1 octet), [op, value]+&gt;
+	 </section>
+   	 <section anchor="type_3" title="Type 3 - Next Header">
+	   <t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
       </t>
-	  <t>Function: Contains a set of {operator, value} pairs that are used to match
-      the last Next Header value octet in IPv6 packets.  The operator
-      byte is encoded as specified in component type 3 of <xref target="I-D.ietf-idr-rfc5575bis" />.
+	  <t>Contains a list of {numeric_op, value} pairs that
+      are used to match the last Next Header (<xref target="RFC2460" />
+      Section 3) value octet in IPv6 packets.
+      </t>
+      <t>This component uses the Numeric Operator (numeric_op) described in
+      <xref target="I-D.ietf-idr-rfc5575bis" /> Section 4.2.1.1.
+      Type 3 component values SHOULD be encoded as single byte
+      (numeric_op len=00).
       </t>
 	  <t>Note: While IPv6 allows for more then one Next Header field in the
 	  packet the main goal of Type 3 flow specification component is to
@@ -208,50 +202,57 @@
       definition is limited to match only on last Next Header field in
       the packet.
 	  </t>
-	  </list>
-	  </t>
-     <t hangText="Type 12 - Fragment">
-     <list>
-	   <t>  Encoding: &lt;type (1 octet), [op, bitmask]+&gt;
+	  </section>
+     <section anchor="type_12 " title="Type 12 - Fragment">
+	   <t>Encoding: &lt;type (1 octet), [bitmask_op, bitmask]+&gt;
       </t>
-	  <t>
-      Uses bitmask operand format defined above.  Bit-7 is not used and
-      MUST be 0 to provide backwards-compatibility with the definition
-      in <xref target="I-D.ietf-idr-rfc5575bis" />
+      <t> Defines a list of {bitmask_op, bitmask} pairs used to match specific IP fragments.
       </t>
-	  <t>Bitmast operand format:
-	  <figure>
-	  <artwork>
-         0   1   2   3   4   5   6   7
-         +---+---+---+---+---+---+---+---+
-         |   Reserved    |LF |FF |IsF| 0 |
-         +---+---+---+---+---+---+---+---+
-	  </artwork>
-	  </figure>
-	  </t>
-	  <t>
-       Bitmask values:
-	  <list style="symbols">
-	  <t>Bit 6 - Is a fragment (IsF)</t>
-	  <t>Bit 5 - First fragment (FF)</t>
-	  <t>Bit 4 - Last fragment (LF)</t>
-	  </list>
-       </t>
-	  </list>
-	  </t>
-     <t hangText="Type 13 - Flow Label (New type)">
-	  <list>
-	   <t>Encoding: &lt;type (1 octet), [op, bitmask]+&gt;
+      <t>This component uses the Bitmask Operator (bitmask_op) described
+      in <xref target="I-D.ietf-idr-rfc5575bis" /> Section 4.2.1.2. The
+      Type 12 component bitmask MUST be encoded as single byte bitmask
+      (bitmask_op len=00).
       </t>
-	  <t> Function:  Contains a set of {operator, value} pairs that are used to match
-      the 20-bit Flow Label field <xref target="RFC2460"></xref>.  The operator byte is
-      encoded as specified in the component type 3 of <xref target="I-D.ietf-idr-rfc5575bis" />.  Values
-      are encoded as 1-, 2-, or 4- byte quantities.
-	  </t>
-	  </list>
-	 </t>
-	</list>
-	</t>
+        <t>
+        <figure title="Fragment Bitmask Operand" anchor="figure_fragment_bitmask_operand">
+        <artwork>
+                   0   1   2   3   4   5   6   7
+                 +---+---+---+---+---+---+---+---+
+                 | 0 | 0 | 0 | 0 |LF |FF |IsF| 0 |
+                 +---+---+---+---+---+---+---+---+
+        </artwork>
+        </figure>
+        </t>
+        <t>Bitmask values:
+        <list style="hanging">
+        <t hangText="IsF -">Is a fragment - match if IPv6 Fragment Header (<xref target="RFC2460" /> Section 4.5)
+            Fragment Offset is not 0
+        </t>
+        <t hangText="FF -">First fragment - match if IPv6 Fragment Header (<xref target="RFC2460" /> Section 4.5)
+            Fragment Offset is 0 AND M flag is 1
+        </t>
+        <t hangText="LF -">Last fragment - match if IPv6 Fragment Header (<xref target="RFC2460" /> Section 4.5)
+            Fragment Offset is not 0 AND M flag is 0
+        </t>
+        <t hangText="0 -">SHOULD be set to 0 on NLRI encoding, and MUST be ignored during decoding
+        </t>
+        </list>
+        </t>
+	 </section>
+     <section anchor="type_13" title="Type 13 - Flow Label (new)">
+	   <t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
+      </t>
+	  <t>Contains a list of {numeric_op, value} pairs that are used to match
+      the 20-bit Flow Label IPv6 header field (<xref target="RFC2460"></xref>
+      Section 3).
+      </t>
+      <t>This component uses the Numeric Operator (numeric_op) described in
+      <xref target="I-D.ietf-idr-rfc5575bis" /> Section 4.2.1.1. Type 13
+      component values SHOULD be encoded as 1-, 2-, or 4-byte quantities
+      (numeric_op len=00, len=01 or len=10).
+      </t>
+	 </section>
+    <section title="Encoding Example">
 	<t> The following example demonstrates the new prefix encoding for: "all
     packets to ::1234:5678:9A00:0/64-104 from 192::/8 and port {range
    [137, 139] or 8080}".  In the destination prefix, "80-" represents
@@ -267,6 +268,8 @@
 	</artwork>
 	</figure>
 	</t>
+        </section>
+   </section>
 	<section title="Order of Traffic Filtering Rules">
 	<t>
 	The orignal definition for the order of traffic filtering rules can
@@ -315,7 +318,6 @@
 	</figure>
 	</t>
 	</section>
-	</section>
 	<section title="IPv6 Flow Specification Traffic Filtering Action changes">
 	<t>One of the traffic filtering actions which can be expressed by BGP
    extended community is defined in <xref target="I-D.ietf-idr-rfc5575bis" /> as traffic-marking.
@@ -348,8 +350,8 @@
    </t>
 	</section>
    <section title="Security Considerations">
-   <t>  No new security issues are introduced to the BGP protocol by this
-   specification over the security concerins in
+   <t>No new security issues are introduced to the BGP protocol by this
+   specification over the security considerations in
    <xref target="I-D.ietf-idr-rfc5575bis" />
    </t>
    </section>
@@ -368,27 +370,27 @@
    </t>
     <t>
    IANA is requested to create and maintain a new registry entitled:
-   "Flow Spec IPv6 Component Types".  The initial values are:
-    <figure>
-	<artwork>
-   Type     Description                 RFC
-   ---------------------------------   ---------
-   Type 1 - Destination IPv6 Prefix   [this draft]
-   Type 2 - Source IPv6 Prefix        [this draft]
-   Type 3 - Next Header               [this draft]
-   Type 4 - Port                      [this draft]
-   Type 5 - Destination port          [this draft]
-   Type 6 - Source port               [this draft]
-   Type 7 - ICMP type                 [this draft]
-   Type 8 - ICMP code                 [this draft]
-   Type 9 - TCP flags                 [this draft]
-   Type 10 - Packet length            [this draft]
-   Type 11 - DSCP                     [this draft]
-   Type 12 - Fragment                 [this draft]
-   Type 13 - Flow Label               [this draft]
-	</artwork>
-	</figure>
+   "Flow Spec IPv6 Component Types" containing the initial entries as specified in
+   <xref target="iana_flow_component_types" />.
    </t>
+       <texttable anchor="iana_flow_component_types" title="Registry: Flow Spec IPv6 Component Types">
+          <ttcol align="left">Value</ttcol>
+          <ttcol align="left">Name</ttcol>
+          <ttcol align="left">Reference</ttcol>
+          <c>1</c>   <c>Destination IPv6 Prefix</c>  <c>[this document]</c>
+          <c>2</c>   <c>Source IPv6 Prefix</c>       <c>[this document]</c>
+          <c>3</c>   <c>Next Header</c>         <c>[this document]</c>
+          <c>4</c>   <c>Port</c>                <c>[this document]</c>
+          <c>5</c>   <c>Destination port</c>    <c>[this document]</c>
+          <c>6</c>   <c>Source port</c>         <c>[this document]</c>
+          <c>7</c>   <c>ICMPv6 type</c>         <c>[this document]</c>
+          <c>8</c>   <c>ICMPv6 code</c>         <c>[this document]</c>
+          <c>9</c>   <c>TCP flags</c>           <c>[this document]</c>
+          <c>10</c>  <c>Packet length</c>       <c>[this document]</c>
+          <c>11</c>  <c>DSCP</c>                <c>[this document]</c>
+          <c>12</c>  <c>Fragment</c>            <c>[this document]</c>
+          <c>13</c>  <c>Flow Label</c>            <c>[this document]</c>
+    </texttable>
  </section>
  <section title="Acknowledgements">
  <t>Authors would like to thank Pedro Marques, Hannes Gredler and Bruno
