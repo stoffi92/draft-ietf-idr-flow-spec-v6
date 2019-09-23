@@ -5,13 +5,14 @@
 <!ENTITY RFC2460 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2460.xml">
 <!ENTITY RFC2474 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2474.xml">
 <!ENTITY RFC4271 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4271.xml">
+<!ENTITY RFC4443 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4443.xml">
+<!ENTITY RFC4760 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4760.xml">
 <!ENTITY RFC5492 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5492.xml">
 <!ENTITY RFC5095 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5095.xml">
 <!ENTITY RFC5701 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5701.xml">
 <!ENTITY RFC6437 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6437.xml">
 <!ENTITY RFC7153 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7153.xml">
 <!ENTITY I-D.ietf-idr-rfc5575bis SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-idr-rfc5575bis.xml">
-
 ]>
 <?rfc toc="yes" ?>
 <?rfc symrefs="yes" ?>
@@ -194,6 +195,43 @@
       the packet.
 	  </t>
 	  </section>
+    <section anchor="type_7" title="Type 7 - ICMPv6 type" toc="include">
+    <t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
+    </t>
+    <t>Defines a list of {numeric_op, value} pairs used to match the
+    type field of an ICMPv6 packet (see also <xref target="RFC4443" /> Section 2.1).
+    </t>
+    <t>
+        This component uses the Numeric Operator (numeric_op) described
+        in <xref target="I-D.ietf-idr-rfc5575bis" /> Section 4.2.1.1.
+        Type 7 component values SHOULD be encoded as single byte
+        (numeric_op len=00).
+    </t>
+    <t>
+        In case of the presence of the ICMPv6 type (code)
+        component only ICMPv6 packets can match the entire Flow Specification.
+        The ICMPv6 type (code) component, if present, never matches when the packet's
+        last Next Header field value is not 58 (ICMPv6), if the packet is fragmented
+        and this is not the first fragment, or if the system is unable to
+        locate the transport header. Different implementations may or may not be
+        able to decode the transport header.
+    </t>
+    </section>
+    <section anchor="type_8" title="Type 8 - ICMPv6 code" toc="include">
+    <t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
+    </t>
+    <t>
+    Defines a list of {numeric_op, value} pairs used to match the
+    code field of an ICMPv6 packet (see also <xref target="RFC4443" /> Section 2.1).
+    </t>
+    <t>
+        This component uses the Numeric Operator (numeric_op) described
+        in <xref target="I-D.ietf-idr-rfc5575bis" /> Section 4.2.1.1.
+        Type 8 component values SHOULD be encoded as single byte
+        (numeric_op len=00).
+    </t>
+    <t>The last paragraph of <xref target="type_7" /> also applies to this component.</t>
+    </section>
      <section anchor="type_12 " title="Type 12 - Fragment">
 	   <t>Encoding: &lt;type (1 octet), [bitmask_op, bitmask]+&gt;
       </t>
@@ -421,6 +459,8 @@ Email: akarch@cisco.com
 	  &RFC2460;
 	  &RFC2474;
 	  &RFC4271;
+      &RFC4443;
+      &RFC4760;
 	  &RFC5492;
 	  &RFC6437;
 	  &RFC5701;
