@@ -109,33 +109,24 @@
    </section>
    <section title="IPv6 Flow Specification encoding in BGP">
    <t>
-   The <xref target="I-D.ietf-idr-rfc5575bis" /> defines a new SAFIs (133 for IPv4) and (134 for VPNv4)
-   applications in order to carry corresponding to each such application
-   flow specification.
+   The <xref target="I-D.ietf-idr-rfc5575bis" /> defines new SAFIs
+   133 (Dissemination of Flow Specification) and 134 (L3VPN
+   Dissemination of Flow Specification) applications in order to carry
+   corresponding to each such application Flow Specification.
    </t>
    <t>
-   This document will redefine the <xref target="I-D.ietf-idr-rfc5575bis" /> SAFIs in order to make them
-   AFI specific and applicable to both IPv4 and IPv6 applications.
-   </t>
-   <t>
-   The following changes are defined:
-   <list>
-   <t> "SAFI 133 for IPv4 dissemination of flow specification rules" to
-      now be defined as "SAFI 133 for dissemination of unicast flow
-      specification rules"
-   </t>
-   <t> "SAFI 134 for VPNv4 dissemination of flow specification rules" to
-      now be defined as "SAFI 134 for dissemination of L3VPN flow
-      specification rules"
-   </t>
-   </list>
+   Implementations wishing to exchange IPv6 Flow Specifications MUST use
+   BGP's Capability Advertisement facility to exchange the Multiprotocol
+   Extension Capability Code (Code 1) as defined in <xref target="RFC4760"></xref>.
+   While <xref target="I-D.ietf-idr-rfc5575bis" /> specifies Flow
+   Specification for IPv4 (AFI=1) only, the (AFI, SAFI) pair carried in
+   the Multiprotocol Extension Capability MUST be: (AFI=2, SAFI=133) for
+   IPv6 Flow Specification, and (AFI=2, SAFI=134) for VPNv6 Flow Specification.
    </t>
    <t>
    For both SAFIs the indication to which address family they are
    referring to will be recognized by AFI value (AFI=1 for IPv4 or
-   VPNv4, AFI=2 for IPv6 and VPNv6 respectively).  Such modification is
-   fully backwards compatible with existing implementation and
-   production deployments.
+   VPNv4, AFI=2 for IPv6 and VPNv6 respectively).
    </t>
    <t>It needs to be observed that such choice of proposed encoding is
    compatible with filter validation against routing reachability
@@ -357,16 +348,6 @@
    </section>
    <section anchor="IANA" title="IANA Considerations">
    <t>This section complies with <xref target="RFC7153"></xref>
-   </t>
-   <t>
-   IANA is requested to rename currently defined SAFI 133 and SAFI 134
-   per <xref target="I-D.ietf-idr-rfc5575bis" /> to read:
-   <figure>
-   <artwork>
-    133     Dissemination of flow specification rules
-    134     L3VPN dissemination of flow specification rules
-   </artwork>
-   </figure>
    </t>
     <t>
    IANA is requested to create and maintain a new registry entitled:
