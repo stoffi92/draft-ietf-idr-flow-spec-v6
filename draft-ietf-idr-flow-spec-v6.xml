@@ -348,35 +348,23 @@
 	</t>
 	</section>
 	<section title="IPv6 Flow Specification Traffic Filtering Action changes">
-	<t>One of the traffic filtering actions which can be expressed by BGP
-   extended community is defined in <xref target="I-D.ietf-idr-rfc5575bis" /> as traffic-marking.
-   Another traffic filtering action defined in <xref target="I-D.ietf-idr-rfc5575bis" /> as a BGP
-   extended community is redirect.  To allow an IPv6 address specific
-   route-target, a new traffic action IPv6 address specific extended
-   community is provided.
-   </t>
-   <t>Therefore, for the purpose of making it compatible with IPv6 header action
-   expressed by presence of the extended community the following text
-   in <xref target="I-D.ietf-idr-rfc5575bis" /> has been modified to read:
-   <list style="hanging">
-    <t hangText="Traffic Marking (0x8009): "> The traffic marking extended community instructs a
-   system to modify first 6 bits of Traffic Class field as (recommended
-   by <xref target="RFC2474"></xref>) of a transiting IPv6 packet to the corresponding value.
-   This extended community is encoded as a sequence of 42 zero bits
-   followed by the 6 bits overwriting DSCP portion of Traffic Class
-   value.
-   </t>
-   <t hangText="Redirect-IPv6 (0x800B):"> redirect IPv6 address specific extended community
-   allows the traffic to be redirected to a VRF routing instance that
-   lists the specified IPv6 address specific route-target in its import
-   policy.  If several local instances match this criteria, the choice
-   between them is a local matter (for example, the instance with the
-   lowest Route Distinguisher value can be elected).  This extended
-   community uses the same encoding as the IPv6 address specific Route
-   Target extended community <xref target="RFC5701"></xref>.
-   </t>
-   </list>
-   </t>
+	<t>Traffic Filtering Actions from <xref target="I-D.ietf-idr-rfc5575bis" />
+        Section 7 can also be applied to IPv6 Flow Specifications. To allow
+        an IPv6 address specific route-target, a new Traffic Filtering
+        Action IPv6 address specific extended community is specified in
+        <xref target="redirect_ipv6" /> below:
+    </t>
+    <section anchor="redirect_ipv6" title="Redirect-IPv6 (ipv6-redirect) sub-type 0x0B">
+       <t>TODO:0x800B The redirect IPv6 address specific extended community
+       allows the traffic to be redirected to a VRF routing instance that
+       lists the specified IPv6 address specific route-target in its import
+       policy.  If several local instances match this criteria, the choice
+       between them is a local matter (for example, the instance with the
+       lowest Route Distinguisher value can be elected).  This extended
+       community uses the same encoding as the IPv6 address specific Route
+       Target extended community <xref target="RFC5701"></xref>.
+       </t>
+       </section>
 	</section>
    <section title="Security Considerations">
    <t>No new security issues are introduced to the BGP protocol by this
