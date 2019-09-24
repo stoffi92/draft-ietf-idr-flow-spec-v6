@@ -397,44 +397,11 @@
     lowest offset has precedence, as this flow matches the most
     significant bit.
 	</t>
-	<t>
-	<figure>
-	<artwork>
-    Pseudocode
-    flow_rule_v6_cmp (a, b)
-    {
-     comp1 = next_component(a);
-     comp2 = next_component(b);
-     while (comp1 || comp2) {
-       // component_type returns infinity on end-of-list
-         if (component_type(comp1) &lt; component_type(comp2)) {
-             return A_HAS_PRECEDENCE;
-         }
-         if (component_type(comp1) &gt; component_type(comp2)) {
-             return B_HAS_PRECEDENCE;
-         }
-
-         if (component_type(comp1) == IPV6_DESTINATION || IPV6_SOURCE) {
-           // offset not equal, lowest offset has precedence
-           // offset equal ...
-           common_len = MIN(prefix_length(comp1), prefix_length(comp2));
-           cmp = prefix_compare(comp1, comp2, offset, common_len);
-           // not equal, lowest value has precedence
-           // equal, longest match has precedence
-          } else {
-           common =
-            MIN(component_length(comp1), component_length(comp2));
-            cmp = memcmp(data(comp1), data(comp2), common);
-            // not equal, lowest value has precedence
-            // equal, longest string has precedence
-           }
-      }
-
-          return EQUAL;
-    }
-	</artwork>
-	</figure>
-	</t>
+    <t>
+      The code in <xref target="flow_rule_cmp_src" /> shows a Python3 implementation
+      of the comparison algorithm. The full code was tested with Python 3.7.2 and can be
+      obtained at <eref target="https://github.com/stoffi92/flowspec-cmp-v6">https://github.com/stoffi92/flowspec-cmp-v6</eref>.
+    </t>
 	</section>
 	<section title="IPv6 Flow Specification Traffic Filtering Action changes">
 	<t>Traffic Filtering Actions from <xref target="I-D.ietf-idr-rfc5575bis" />
@@ -443,7 +410,7 @@
         Action IPv6 address specific extended community is specified in
         <xref target="redirect_ipv6" /> below:
     </t>
-    <section anchor="redirect_ipv6" title="RedirectIPv6 (rt-redirect-ipv6) Type/Sub-Type 0x800B">
+    <section anchor="redirect_ipv6" title="Redirect IPv6 (rt-redirect-ipv6) Type/Sub-Type 0x800B">
        <t>The redirect IPv6 address specific extended community
        allows the traffic to be redirected to a VRF routing instance that
        lists the specified IPv6 address specific route-target in its import
@@ -571,5 +538,85 @@ Email: akarch@cisco.com
 	<references title="Informative References">
 	&RFC5095;
     </references>
+    <section title="Python code: flow_rule_cmp_v6" anchor="flow_rule_cmp_src">
+<t>
+  <figure>
+    <artwork><![CDATA[
+<CODE BEGINS>
+"""
+Copyright (c) 2019 IETF Trust and the persons identified as authors of
+the code. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, is permitted pursuant to, and subject to the license
+terms contained in, the Simplified BSD License set forth in Section
+4.c of the IETF Trust’s Legal Provisions Relating to IETF Documents
+(http://trustee.ietf.org/license-info).
+"""
+
+import itertools
+import ipaddress
+
+def flow_rule_cmp_v6(a, b):
+    for comp_a, comp_b in itertools.zip_longest(a.components,
+                                           b.components):
+        # If a component type does not exist in one rule
+        # this rule has lower precedence
+        if not comp_a:
+            return B_HAS_PRECEDENCE
+        if not comp_b:
+            return A_HAS_PRECEDENCE
+        # Higher precedence for lower component type
+        if comp_a.component_type < comp_b.component_type:
+            return A_HAS_PRECEDENCE
+        if comp_a.component_type > comp_b.component_type:
+            return B_HAS_PRECEDENCE
+        # component types are equal -> type specific comparison
+        if comp_a.component_type in (IP_DESTINATION, IP_SOURCE):
+            if comp_a.offset < comp_b.offset:
+                return A_HAS_PRECEDENCE
+            if comp_a.offset < comp_b.offset:
+                return B_HAS_PRECEDENCE
+            # both components have the same offset
+            # assuming comp_a.value, comp_b.value of type
+            # ipaddress.IPv6Network
+            # and the offset bits are reset to 0 (since they are not
+            # represented in the NLRI)
+            if comp_a.value.overlaps(comp_b.value):
+                # longest prefixlen has precedence
+                if comp_a.value.prefixlen > comp_b.value.prefixlen:
+                    return A_HAS_PRECEDENCE
+                if comp_a.value.prefixlen < comp_b.value.prefixlen:
+                    return B_HAS_PRECEDENCE
+                # components equal -> continue with next component
+            elif comp_a.value > comp_b.value:
+                return B_HAS_PRECEDENCE
+            elif comp_a.value < comp_b.value:
+                return A_HAS_PRECEDENCE
+        else:
+            # assuming comp_a.value, comp_b.value of type bytearray
+            if len(comp_a.value) == len(comp_b.value):
+                if comp_a.value > comp_b.value:
+                    return B_HAS_PRECEDENCE
+                if comp_a.value < comp_b.value:
+                    return A_HAS_PRECEDENCE
+                # components equal -> continue with next component
+            else:
+                common = min(len(comp_a.value), len(comp_b.value))
+                if comp_a.value[:common] > comp_b.value[:common]:
+                    return B_HAS_PRECEDENCE
+                elif comp_a.value[:common] < comp_b.value[:common]:
+                    return A_HAS_PRECEDENCE
+                # the first common bytes match
+                elif len(comp_a.value) > len(comp_b.value):
+                    return A_HAS_PRECEDENCE
+                else:
+                    return B_HAS_PRECEDENCE
+    return EQUAL
+<CODE ENDS>
+    ]]></artwork>
+  </figure>
+</t>
+    </section>
   </back>
 </rfc>
