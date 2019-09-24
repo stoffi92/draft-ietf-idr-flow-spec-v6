@@ -80,10 +80,10 @@
    <t><xref target="I-D.ietf-idr-rfc5575bis" format="title" /> <xref target="I-D.ietf-idr-rfc5575bis" /> provides a
    protocol extension for propagation of traffic flow information for
    the purpose of rate limiting or filtering.  The <xref target="I-D.ietf-idr-rfc5575bis" /> specifies
-   those extensions for IPv4 protocol data packets.
+   those extensions for IPv4 protocol data packets only.
    </t>
    <t>
-   This specification extends the current <xref target="I-D.ietf-idr-rfc5575bis" /> and defines changes
+   This specification extends <xref target="I-D.ietf-idr-rfc5575bis" /> and defines changes
    to the original document in order to make it also usable and
    applicable to IPv6 data packets.
    </t>
@@ -150,22 +150,7 @@
    </t>
    <t>It needs to be observed that such choice of proposed encoding is
    compatible with filter validation against routing reachability
-   information as described in section 6 of <xref target="I-D.ietf-idr-rfc5575bis" />.  Validation tables
-   will now be performed according to the following rules.
-   <list>
-    <t>Flow specification received over AFI/SAFI=1/133 will be validated
-      against routing reachability received over AFI/SAFI=1/1
-	  </t>
-	 <t>Flow specification received over AFI/SAFI=1/134 will be validated
-      against routing reachability received over AFI/SAFI=1/128
-	 </t>
-     <t> Flow specification received over AFI/SAFI=2/133 will be validated
-      against routing reachability received over AFI/SAFI=2/1
-	 </t>
-     <t>Flow specification received over AFI/SAFI=2/134 will be validated
-      against routing reachability received over AFI/SAFI=2/128
-	 </t>
-   </list>
+   information as described in section 6 of <xref target="I-D.ietf-idr-rfc5575bis" />.
    </t>
    </section>
    <section title="IPv6 Flow Specification components">
