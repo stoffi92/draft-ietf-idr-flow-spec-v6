@@ -388,9 +388,10 @@
 
    </section>
    </section>
-	<section title="Order of Traffic Filtering Rules">
+	<section title="Ordering of Flow Specifications">
 	<t>
-	The orignal definition for the order of traffic filtering rules can
+	The definition for the order of traffic filtering rules from
+    <xref target="I-D.ietf-idr-rfc5575bis" /> Section 5.1 can
     be reused with new consideration for the IPv6 prefix offset.  As long
     as the offsets are equal, the comparison is the same, retaining
     longest-prefix-match semantics.  If the offsets are not equal, the
@@ -399,11 +400,24 @@
 	</t>
     <t>
       The code in <xref target="flow_rule_cmp_src" /> shows a Python3 implementation
-      of the comparison algorithm. The full code was tested with Python 3.7.2 and can be
+      of the resulting comparison algorithm. The full code was tested with Python 3.7.2 and can be
       obtained at <eref target="https://github.com/stoffi92/flowspec-cmp-v6">https://github.com/stoffi92/flowspec-cmp-v6</eref>.
     </t>
 	</section>
-	<section title="IPv6 Flow Specification Traffic Filtering Action changes">
+	<section title="Validation Procedure">
+	<t>
+    The validation procedure is the same as specified in
+    <xref target="I-D.ietf-idr-rfc5575bis" /> Section 6 with the exception
+    that item a) of the validation procedure should now read as follows:
+    <list>
+    <t>
+      a) A destination prefix component with offset=0 is embedded in the
+        Flow Specification
+    </t>
+    </list>
+    </t>
+	</section>
+	<section title="IPv6 Traffic Filtering Action changes">
 	<t>Traffic Filtering Actions from <xref target="I-D.ietf-idr-rfc5575bis" />
         Section 7 can also be applied to IPv6 Flow Specifications. To allow
         an IPv6 address specific route-target, a new Traffic Filtering
