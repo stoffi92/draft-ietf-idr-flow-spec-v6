@@ -12,6 +12,7 @@
 <!ENTITY RFC5701 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5701.xml">
 <!ENTITY RFC6437 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6437.xml">
 <!ENTITY RFC7153 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7153.xml">
+<!ENTITY RFC8174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml">
 <!ENTITY I-D.ietf-idr-rfc5575bis SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-idr-rfc5575bis.xml">
 ]>
 <?rfc toc="yes" ?>
@@ -107,6 +108,24 @@
    and operation mechanisms of Dissemination of Flow Specification Rules
    will remain in the main specification and will not be repeated here.
    </t>
+	<section title="Definitions of Terms Used in This Memo">
+	<t>
+	<list style="hanging">
+	<t hangText="AFI - ">Address Family Identifier.</t>
+	<t hangText="AS - ">Autonomous System.</t>
+	<t hangText="NLRI - ">Network Layer Reachability Information.</t>
+    <t hangText="SAFI - ">Subsequent Address Family Identifier.</t>
+	<t hangText="VRF - ">Virtual Routing and Forwarding instance.</t>
+	</list>
+	</t>
+	<t>
+    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+    NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
+    "MAY", and "OPTIONAL" in this document are to be interpreted as
+    described in BCP 14 <xref target="RFC2119"></xref> <xref target="RFC8174"></xref>
+    when, and only when, they appear in all capitals, as shown here.
+	</t>
+	</section>
    </section>
    <section title="IPv6 Flow Specification encoding in BGP">
    <t>
@@ -476,6 +495,7 @@ Email: akarch@cisco.com
 	  &RFC6437;
 	  &RFC5701;
 	  &RFC7153;
+      &RFC8174;
       &I-D.ietf-idr-rfc5575bis;
 	</references>
 	<references title="Informative References">
