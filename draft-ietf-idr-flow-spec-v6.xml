@@ -409,7 +409,7 @@
         Action IPv6 address specific extended community is specified in
         <xref target="redirect_ipv6" /> below:
     </t>
-    <section anchor="redirect_ipv6" title="Redirect IPv6 (rt-redirect-ipv6) Type/Sub-Type 0x800B">
+    <section anchor="redirect_ipv6" title="Redirect IPv6 (rt-redirect-ipv6) Type/Sub-Type 0x80/TBD">
        <t>The redirect IPv6 address specific extended community
        allows the traffic to be redirected to a VRF routing instance that
        lists the specified IPv6 address specific route-target in its import
@@ -420,7 +420,7 @@
        <t>This extended community uses the same encoding as the IPv6
        address specific Route Target extended community
        <xref target="RFC5701"></xref> Section 2 with the high-order
-       octet of the Type always set to 0x80 and the Sub-Type always 0x0B.
+       octet of the Type always set to 0x80 and the Sub-Type always TBD.
        </t>
        <t>Interferes with: All BGP Flow Specification redirect Traffic Filtering
            Actions (with itself and those specified in
@@ -463,14 +463,13 @@
     <t>
         IANA maintains a registry entitled "Generic Transitive
         Experimental Use Extended Community Sub-Types". For the purpose of
-        this work, IANA is requested to add the following value to the
-        registry:
+        this work, IANA is requested to assign a new value:
     </t>
    <texttable anchor="iana_ext_comm_subtypes" title="Registry: Generic Transitive Experimental Use Extended Community Sub-Types">
          <ttcol align="left">Sub-Type Value</ttcol>
          <ttcol align="left">Name</ttcol>
          <ttcol align="left">Reference</ttcol>
-         <c>0x0B</c>
+         <c>TBD</c>
          <c>
            Flow spec rt-redirect-ipv6 format
          </c>
