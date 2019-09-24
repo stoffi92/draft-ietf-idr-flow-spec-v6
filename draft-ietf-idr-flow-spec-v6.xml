@@ -301,22 +301,92 @@
       </t>
 	 </section>
     <section title="Encoding Example">
-	<t> The following example demonstrates the new prefix encoding for: "all
-    packets to ::1234:5678:9A00:0/64-104 from 192::/8 and port {range
-   [137, 139] or 8080}".  In the destination prefix, "80-" represents
-   the prefix offset of 80 bits.  In this exmaple, the 0 offset is
-   omitted from the printed source prefix.
-	<figure>
-	<artwork>
- +-------------------------+------------+-----------------------+
- | destination             | source     | port                  |
- +-------------------------+----------- +-----------------------+
- |0x01 68 50 12 34 56 78 9A| 02 00 08 c0|04 03 89 45 8b 91 1f 90|
- +-------------------------+------------+-----------------------+
-	</artwork>
-	</figure>
-	</t>
-        </section>
+ <section title="Example 1" toc="exclude">
+<t>
+   The following example demonstrates the prefix encoding for: "all
+   packets to ::1234:5678:9A00:0/64-104 from 100::/8 and port 25".
+</t>
+ <t>
+ <figure>
+ <artwork>
+    +--------+-------------------------+-------------+----------+
+    | length | destination             | source      | port     |
+    +--------+-------------------------+-------------+----------+
+    | 0x0f   | 01 68 40 12 34 56 78 9A | 02 08 00 01 | 04 81 19 |
+    +--------+-------------------------+-------------+----------+
+ </artwork>
+ </figure>
+ </t>
+<t>
+   Decoded:
+<figure>
+<artwork>
+    +-------+------------+------------------------------+
+    | Value |            |                              |
+    +-------+------------+------------------------------+
+    |  0x0f | length     | 16 octets (len&lt;240 1-octet)  |
+    |  0x01 | type       | Type 1 - Dest. IPv6 Prefix   |
+    |  0x68 | length     | 104 bit                      |
+    |  0x40 | offset     | 64 bit                       |
+    |  0x12 | prefix     |                              |
+    |  0x34 | prefix     |                              |
+    |  0x56 | prefix     |                              |
+    |  0x78 | prefix     |                              |
+    |  0x9A | prefix     |                              |
+    |  0x02 | type       | Type 2 - Source IPv6 Prefix  |
+    |  0x08 | length     | 8 bit                        |
+    |  0x00 | offset     | 0 bit                        |
+    |  0x01 | prefix     |                              |
+    |  0x04 | type       | Type 4 - Port                |
+    |  0x81 | numeric_op | end-of-list, value size=1, = |
+    |  0x19 | value      | 25                           |
+    +-------+------------+------------------------------+
+</artwork>
+</figure>
+    This constitutes a NLRI with a NLRI length of 16 octets.
+</t>
+</section>
+ <section title="Example 2" toc="exclude">
+<t>
+   The following example demonstrates the prefix encoding for: "all
+   packets to ::1234:5678:9A00:0/65-104".
+</t>
+ <t>
+ <figure>
+ <artwork>
+    +--------+-------------------------+
+    | length | destination             |
+    +--------+-------------------------+
+    | 0x08   | 01 68 41 24 68 ac f1 34 |
+    +--------+-------------------------+
+ </artwork>
+ </figure>
+ </t>
+<t>
+   Decoded:
+<figure>
+<artwork>
+    +-------+------------+------------------------------+
+    | Value |            |                              |
+    +-------+------------+------------------------------+
+    |  0x08 | length     | 8 octets (len&lt;240 1-octet)   |
+    |  0x01 | type       | Type 1 - Dest. IPv6 Prefix   |
+    |  0x68 | length     | 104 bit                      |
+    |  0x41 | offset     | 65 bit                       |
+    |  0x24 | prefix     | starting with the 66ths bit  |
+    |  0x68 | prefix     |                              |
+    |  0xac | prefix     |                              |
+    |  0xf1 | prefix     |                              |
+    |  0x34 | prefix     |                              |
+    +-------+------------+------------------------------+
+</artwork>
+</figure>
+    This constitutes a NLRI with a NLRI length of 8 octets.
+</t>
+</section>
+
+
+   </section>
    </section>
 	<section title="Order of Traffic Filtering Rules">
 	<t>
