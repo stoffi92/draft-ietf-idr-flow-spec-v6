@@ -22,7 +22,7 @@
 <?rfc subcompact="no" ?>
 <?rfc iprnotified="no" ?>
 <?rfc strict="no" ?>
-<rfc category="std" docName="draft-ietf-idr-flow-spec-v6-10.txt"  ipr="trust200902">
+<rfc category="std" docName="draft-ietf-idr-flow-spec-v6-10"  ipr="trust200902">
   <front>
   <title abbrev="IPv6 Flow Specification">Dissemination of Flow Specification Rules for IPv6</title>
    <author role="editor" fullname="Christoph Loibl" initials="C.L."
@@ -67,7 +67,7 @@
       </address>
     </author>
 
-    <date year="2017" />
+    <date year="2019" />
     <area>Routing Area</area>
     <workgroup>IDR Working Group</workgroup>
     <keyword>RFC</keyword>
