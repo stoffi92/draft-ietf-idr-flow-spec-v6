@@ -194,7 +194,7 @@
       </t>
 	  <t>Note: While IPv6 allows for more then one Next Header field in the
 	  packet the main goal of Type 3 flow specification component is to
-      match on the subsequent IP protocol value.  Therefor the
+      match on the subsequent IP protocol value.  Therefore the
       definition is limited to match only on last Next Header field in
       the packet.
 	  </t>
