@@ -2,15 +2,11 @@
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
-<!ENTITY RFC2460 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2460.xml">
-<!ENTITY RFC2474 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2474.xml">
+<!ENTITY RFC8200 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8200.xml">
 <!ENTITY RFC4271 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4271.xml">
 <!ENTITY RFC4443 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4443.xml">
 <!ENTITY RFC4760 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4760.xml">
-<!ENTITY RFC5492 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5492.xml">
-<!ENTITY RFC5095 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5095.xml">
 <!ENTITY RFC5701 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5701.xml">
-<!ENTITY RFC6437 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6437.xml">
 <!ENTITY RFC7153 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7153.xml">
 <!ENTITY RFC8126 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8126.xml">
 <!ENTITY RFC8174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml">
@@ -78,13 +74,13 @@
     <keyword>BGP Flow Flow Specification</keyword>
 	<keyword>V6</keyword>
     <abstract>
-   <t><xref target="I-D.ietf-idr-rfc5575bis" format="title" /> <xref target="I-D.ietf-idr-rfc5575bis" /> provides a
+   <t>Dissemination of Flow Specification Rules I-D.ietf-idr-rfc5575bis provides a
    protocol extension for propagation of traffic flow information for
-   the purpose of rate limiting or filtering.  The <xref target="I-D.ietf-idr-rfc5575bis" /> specifies
+   the purpose of rate limiting or filtering. I-D.ietf-idr-rfc5575bis specifies
    those extensions for IPv4 protocol data packets only.
    </t>
    <t>
-   This specification extends <xref target="I-D.ietf-idr-rfc5575bis" /> and defines changes
+   This specification extends I-D.ietf-idr-rfc5575bis and defines changes
    to the original document in order to make it also usable and
    applicable to IPv6 data packets.
    </t>
@@ -97,7 +93,7 @@
    also capable of supporting IPv6 data packets.
   </t>
   <t>
-   In this document authors analyze the differences of IPv6 <xref target="RFC2460"></xref>
+   In this document authors analyze the differences of IPv6 <xref target="RFC8200"></xref>
    flows description from those of traditional IPv4 packets and propose
    subset of new encoding formats to enable Dissemination of Flow
    Specification Rules <xref target="I-D.ietf-idr-rfc5575bis" /> for IPv6.
@@ -185,7 +181,7 @@
 	   <t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
       </t>
 	  <t>Contains a list of {numeric_op, value} pairs that
-      are used to match the last Next Header (<xref target="RFC2460" />
+      are used to match the last Next Header (<xref target="RFC8200" />
       Section 3) value octet in IPv6 packets.
       </t>
       <t>This component uses the Numeric Operator (numeric_op) described in
@@ -267,13 +263,13 @@
         </t>
         <t>Bitmask values:
         <list style="hanging">
-        <t hangText="IsF -">Is a fragment - match if IPv6 Fragment Header (<xref target="RFC2460" /> Section 4.5)
+        <t hangText="IsF -">Is a fragment - match if IPv6 Fragment Header (<xref target="RFC8200" /> Section 4.5)
             Fragment Offset is not 0
         </t>
-        <t hangText="FF -">First fragment - match if IPv6 Fragment Header (<xref target="RFC2460" /> Section 4.5)
+        <t hangText="FF -">First fragment - match if IPv6 Fragment Header (<xref target="RFC8200" /> Section 4.5)
             Fragment Offset is 0 AND M flag is 1
         </t>
-        <t hangText="LF -">Last fragment - match if IPv6 Fragment Header (<xref target="RFC2460" /> Section 4.5)
+        <t hangText="LF -">Last fragment - match if IPv6 Fragment Header (<xref target="RFC8200" /> Section 4.5)
             Fragment Offset is not 0 AND M flag is 0
         </t>
         <t hangText="0 -">MUST be set to 0 on NLRI encoding, and MUST be ignored during decoding
@@ -285,7 +281,7 @@
 	   <t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
       </t>
 	  <t>Contains a list of {numeric_op, value} pairs that are used to match
-      the 20-bit Flow Label IPv6 header field (<xref target="RFC2460"></xref>
+      the 20-bit Flow Label IPv6 header field (<xref target="RFC8200"></xref>
       Section 3).
       </t>
       <t>This component uses the Numeric Operator (numeric_op) described in
@@ -561,22 +557,16 @@ Email: akarch@cisco.com
   <back>
     <references title="Normative References">
       &RFC2119;
-	  &RFC2460;
-	  &RFC2474;
+	  &RFC8200;
 	  &RFC4271;
       &RFC4443;
       &RFC4760;
-	  &RFC5492;
-	  &RFC6437;
 	  &RFC5701;
 	  &RFC7153;
       &RFC8126;
       &RFC8174;
       &I-D.ietf-idr-rfc5575bis;
 	</references>
-	<references title="Informative References">
-	&RFC5095;
-    </references>
     <section title="Example python code: flow_rule_cmp_v6" anchor="flow_rule_cmp_src">
 <t>
   <figure>
