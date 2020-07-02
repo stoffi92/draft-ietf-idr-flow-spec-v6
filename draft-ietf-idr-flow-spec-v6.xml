@@ -12,6 +12,7 @@
 <!ENTITY RFC5701 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5701.xml">
 <!ENTITY RFC6437 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6437.xml">
 <!ENTITY RFC7153 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7153.xml">
+<!ENTITY RFC8126 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8126.xml">
 <!ENTITY RFC8174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml">
 <!ENTITY I-D.ietf-idr-rfc5575bis SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-idr-rfc5575bis.xml">
 ]>
@@ -469,6 +470,37 @@
           <c>13</c>  <c>Flow Label</c>            <c>[this document]</c>
     </texttable>
     <t>
+      In order to manage the limited number space and accommodate several
+      usages, the following policies defined by <xref target="RFC8126" />
+      are used:
+    </t>
+    <texttable anchor="iana_flow_component_types_policies" title="Flow Spec IPv6 Component Types Registration Policy">
+          <ttcol align="left">Type Values</ttcol>
+          <ttcol align="left">Policy</ttcol>
+          <c>0</c>           <c>Reserved</c>
+          <c>[1 .. 127]</c>   <c>Specification Required</c>
+          <c>[128 .. 254]</c>   <c>Expert Review</c>
+          <c>255</c>   <c>Reserved</c>
+    </texttable>
+    <t>
+    <list style="hanging" hangIndent="6">
+        <t hangText="Guidance for Experts:">
+        <vspace />
+        128-254 requires 
+        Expert Review as the registration policy. The Experts are expected 
+        to check the clarity of purpose and use of the requested code points. 
+        The Experts must also verify that any 
+        specification produced in the IETF that requests one of these code
+        points has been made available for review by the IDR working group
+        and that any specification produced outside the IETF does not
+        conflict with work that is active or already published within the
+        IETF. It must be pointed out that introducing new component types may 
+        break existing implementations of this protocol.
+        Unused and available for assignment via
+        documented procedures.</t>
+    </list>
+    </t>
+    <t>
         IANA maintains a registry entitled "Generic Transitive
         Experimental Use Extended Community Sub-Types". For the purpose of
         this work, IANA is requested to assign a new value:
@@ -538,6 +570,7 @@ Email: akarch@cisco.com
 	  &RFC6437;
 	  &RFC5701;
 	  &RFC7153;
+      &RFC8126;
       &RFC8174;
       &I-D.ietf-idr-rfc5575bis;
 	</references>
