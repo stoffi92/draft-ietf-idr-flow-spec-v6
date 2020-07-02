@@ -275,7 +275,7 @@
         <t hangText="LF -">Last fragment - match if IPv6 Fragment Header (<xref target="RFC2460" /> Section 4.5)
             Fragment Offset is not 0 AND M flag is 0
         </t>
-        <t hangText="0 -">SHOULD be set to 0 on NLRI encoding, and MUST be ignored during decoding
+        <t hangText="0 -">MUST be set to 0 on NLRI encoding, and MUST be ignored during decoding
         </t>
         </list>
         </t>
