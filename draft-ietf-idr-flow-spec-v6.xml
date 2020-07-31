@@ -19,7 +19,7 @@
 <?rfc subcompact="no" ?>
 <?rfc iprnotified="no" ?>
 <?rfc strict="no" ?>
-<rfc category="std" docName="draft-ietf-idr-flow-spec-v6-12"  ipr="trust200902">
+<rfc category="std" docName="draft-ietf-idr-flow-spec-v6-13"  ipr="trust200902">
   <front>
   <title abbrev="IPv6 Flow Specification">Dissemination of Flow Specification Rules for IPv6</title>
    <author role="editor" fullname="Christoph Loibl" initials="C.L."
@@ -492,8 +492,7 @@
         conflict with work that is active or already published within the
         IETF. It must be pointed out that introducing new component types may 
         break existing implementations of this protocol.
-        Unused and available for assignment via
-        documented procedures.</t>
+        </t>
     </list>
     </t>
     <t>
