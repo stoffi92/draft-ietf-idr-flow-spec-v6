@@ -71,7 +71,7 @@
     <keyword>Request for Comments</keyword>
     <keyword>I-D</keyword>
     <keyword>Internet-Draft</keyword>
-    <keyword>BGP Flow Flow Specification</keyword>
+    <keyword>BGP Flow Specification</keyword>
 	<keyword>V6</keyword>
     <abstract>
    <t>
@@ -80,8 +80,7 @@
    the purpose of rate limiting or filtering IPv4 protocol data packets.
    </t>
    <t>
-   This document extends the original specification in order to make 
-   it also usable and applicable to IPv6 data packets.
+   This specification extends I-D.ietf-idr-rfc5575bis with IPv6 functionality.
    </t>
     </abstract>
   </front>
