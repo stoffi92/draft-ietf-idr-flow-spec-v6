@@ -136,15 +136,6 @@
    (AFI=2, SAFI=133) for IPv6 Flow Specification, and (AFI=2, SAFI=134) for 
    VPNv6 Flow Specification.
    </t>
-   <t>
-   For both SAFIs the indication to which address family they are
-   referring to will be recognized by AFI value (AFI=1 for IPv4 or
-   VPNv4, AFI=2 for IPv6 and VPNv6, respectively).
-   </t>
-   <t>It needs to be observed that such choice of proposed encoding is
-   compatible with filter validation against routing reachability
-   information as described in Section 6 of <xref target="I-D.ietf-idr-rfc5575bis" />.
-   </t>
    </section>
    <section title="IPv6 Flow Specification components">
    <t>The following components are redefined or added for the purpose
