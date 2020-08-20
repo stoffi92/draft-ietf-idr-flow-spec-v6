@@ -139,7 +139,7 @@
    <t>
    For both SAFIs the indication to which address family they are
    referring to will be recognized by AFI value (AFI=1 for IPv4 or
-   VPNv4, AFI=2 for IPv6 and VPNv6 respectively).
+   VPNv4, AFI=2 for IPv6 and VPNv6, respectively).
    </t>
    <t>It needs to be observed that such choice of proposed encoding is
    compatible with filter validation against routing reachability
