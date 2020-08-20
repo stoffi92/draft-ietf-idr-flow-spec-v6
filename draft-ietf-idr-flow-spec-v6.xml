@@ -138,10 +138,15 @@
    </t>
    </section>
    <section title="IPv6 Flow Specification components">
-   <t>The following components are redefined or added for the purpose
-   of accommodating the IPv6 header encoding. Unless otherwise specified
-   all other components defined in <xref target="I-D.ietf-idr-rfc5575bis" />
-   Section 4.2.2 also apply to IPv6 Flow Specification.
+   <t>
+   The encoding of each of the components begins with a type field (1 octet)
+   followed by a variable length parameter. The following sections define
+   component types and parameter encodings for IPv6.
+   </t>
+   <t>
+   Types 4, 5, 6, 9, 10 and 11, as defined in <xref target="I-D.ietf-idr-rfc5575bis" />,
+   also apply to IPv6. Note that even if the definitions are the same (and
+   not repeated here), the number space is managed separately (<xref target="IANA" />).
    </t>
    <section anchor="type_1" title="Type 1 - Destination IPv6 Prefix" toc="include">
 	   <t>Encoding: &lt;type (1 octet), length (1 octet), offset (1 octet), prefix (variable)&gt;
