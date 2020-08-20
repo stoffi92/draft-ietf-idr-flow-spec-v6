@@ -132,10 +132,9 @@
    Implementations wishing to exchange IPv6 Flow Specifications MUST use
    BGP's Capability Advertisement facility to exchange the Multiprotocol
    Extension Capability Code (Code 1) as defined in <xref target="RFC4760"></xref>.
-   While <xref target="I-D.ietf-idr-rfc5575bis" /> specifies Flow
-   Specification for IPv4 (AFI=1) only, the (AFI, SAFI) pair carried in
-   the Multiprotocol Extension Capability MUST be: (AFI=2, SAFI=133) for
-   IPv6 Flow Specification, and (AFI=2, SAFI=134) for VPNv6 Flow Specification.
+   The (AFI, SAFI) pair carried in the Multiprotocol Extension Capability MUST be: 
+   (AFI=2, SAFI=133) for IPv6 Flow Specification, and (AFI=2, SAFI=134) for 
+   VPNv6 Flow Specification.
    </t>
    <t>
    For both SAFIs the indication to which address family they are
