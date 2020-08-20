@@ -87,7 +87,7 @@
   <middle>
      <section anchor="intro" title="Introduction">
 	 <t>The growing amount of IPv6 traffic in private and public networks
-   requires the extension of tools used in the IPv4 only networks to be
+   requires the extension of tools used in IPv4-only networks to be
    also capable of supporting IPv6 data packets.
   </t>
   <t>
