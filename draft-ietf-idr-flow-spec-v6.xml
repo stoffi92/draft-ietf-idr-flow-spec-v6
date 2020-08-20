@@ -97,11 +97,10 @@
    Specification Rules <xref target="I-D.ietf-idr-rfc5575bis" /> for IPv6.
  </t>
  <t>
-   This specification should be treated as an extension of base
-   <xref target="I-D.ietf-idr-rfc5575bis" /> specification and not its replacement.  It only defines the
-   delta changes required to support IPv6 while all other definitions
-   and operation mechanisms of Dissemination of Flow Specification Rules
-   will remain in the main specification and will not be repeated here.
+    This specification is an extension of the base <xref target="I-D.ietf-idr-rfc5575bis" />. 
+    It only defines the delta changes required to support IPv6 while all other
+    definitions and operation mechanisms of Dissemination of Flow Specification
+    Rules will remain in the main specification and will not be repeated here.
    </t>
 	<section title="Definitions of Terms Used in This Memo">
 	<t>
