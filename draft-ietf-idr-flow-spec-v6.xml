@@ -190,7 +190,7 @@
       the packet.
 	  </t>
 	  </section>
-    <section anchor="type_7" title="Type 7 - ICMPv6 type" toc="include">
+    <section anchor="type_7" title="Type 7 - ICMPv6 Type" toc="include">
     <t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
     </t>
     <t>Defines a list of {numeric_op, value} pairs used to match the
@@ -199,14 +199,14 @@
     <t>
         This component uses the Numeric Operator (numeric_op) described
         in <xref target="I-D.ietf-idr-rfc5575bis" /> Section 4.2.1.1.
-        Type 7 component values SHOULD be encoded as single byte
+        Type 7 component values SHOULD be encoded as single octet
         (numeric_op len=00).
     </t>
     <t>
-        In case of the presence of the ICMPv6 type
+        In case of the presence of the ICMPv6 Type
         component only ICMPv6 packets can match the entire Flow Specification.
-        The ICMPv6 type component, if present, never matches when the packet's
-        last Next Header field value is not 58 (ICMPv6), if the packet is fragmented
+        The ICMPv6 Type component, if present, never matches when the packet's
+        upper-layer IP protocol value is not 58 (ICMPv6), if the packet is fragmented
         and this is not the first fragment, or if the system is unable to
         locate the transport header. Different implementations may or may not be
         able to decode the transport header.
