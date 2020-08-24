@@ -390,8 +390,8 @@
 	<section title="Ordering of Flow Specifications">
 	<t>
 	The definition for the order of traffic filtering rules from
-    <xref target="I-D.ietf-idr-rfc5575bis" /> Section 5.1 can
-    be reused with new consideration for the IPv6 prefix offset.  As long
+    <xref target="I-D.ietf-idr-rfc5575bis" /> Section 5.1 is
+    reused with new consideration for the IPv6 prefix offset.  As long
     as the offsets are equal, the comparison is the same, retaining
     longest-prefix-match semantics.  If the offsets are not equal, the
     lowest offset has precedence, as this flow matches the most
