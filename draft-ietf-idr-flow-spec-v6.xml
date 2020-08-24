@@ -443,9 +443,11 @@
        </section>
 	</section>
    <section title="Security Considerations">
-   <t>No new security issues are introduced to the BGP protocol by this
-   specification over the security considerations in
-   <xref target="I-D.ietf-idr-rfc5575bis" />
+   <t>
+   This document extends the functionality in <xref target="I-D.ietf-idr-rfc5575bis" /> to be applicable to
+   IPv6 data packets. The same Security Considerations from <xref target="I-D.ietf-idr-rfc5575bis" />
+   now also apply to IPv6 networks. Otherwise, no new security issues are added
+   to the BGP protocol.
    </t>
    </section>
    <section anchor="IANA" title="IANA Considerations">
