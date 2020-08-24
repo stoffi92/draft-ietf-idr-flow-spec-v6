@@ -173,8 +173,10 @@
 	   <t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
       </t>
 	  <t>Contains a list of {numeric_op, value} pairs that
-      are used to match the last Next Header (<xref target="RFC8200" />
-      Section 3) value octet in IPv6 packets.
+      are used to match the first Next Header value octet in IPv6 packets 
+      that is not an extension header and thus indicates that the next item 
+      in the packet is the corresponding upper-layer header (see 
+      <xref target="RFC8200" /> Section 4).
       </t>
       <t>This component uses the Numeric Operator (numeric_op) described in
       <xref target="I-D.ietf-idr-rfc5575bis" /> Section 4.2.1.1.
