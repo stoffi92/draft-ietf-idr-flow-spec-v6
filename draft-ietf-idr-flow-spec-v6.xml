@@ -180,13 +180,13 @@
       </t>
       <t>This component uses the Numeric Operator (numeric_op) described in
       <xref target="I-D.ietf-idr-rfc5575bis" /> Section 4.2.1.1.
-      Type 3 component values SHOULD be encoded as single byte
+      Type 3 component values SHOULD be encoded as single octet
       (numeric_op len=00).
       </t>
 	  <t>Note: While IPv6 allows for more then one Next Header field in the
 	  packet the main goal of Type 3 flow specification component is to
-      match on the subsequent IP protocol value.  Therefore the
-      definition is limited to match only on last Next Header field in
+      match on the first upper-layer IP protocol value.  Therefore the
+      definition is limited to match only on this Next Header field in
       the packet.
 	  </t>
 	  </section>
