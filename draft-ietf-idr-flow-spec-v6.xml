@@ -421,7 +421,7 @@
         Section 7 can also be applied to IPv6 Flow Specifications. To allow
         an IPv6 address specific route-target, a new Traffic Filtering
         Action IPv6 address specific extended community is specified in
-        <xref target="redirect_ipv6" /> below:
+        <xref target="redirect_ipv6" /> below.
     </t>
     <section anchor="redirect_ipv6" title="Redirect IPv6 (rt-redirect-ipv6) Type/Sub-Type 0x80/TBD">
        <t>The redirect IPv6 address specific extended community
