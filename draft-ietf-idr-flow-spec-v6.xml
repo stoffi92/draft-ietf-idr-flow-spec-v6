@@ -288,16 +288,16 @@
  <section title="Example 1" toc="exclude">
 <t>
    The following example demonstrates the prefix encoding for: "all
-   packets to ::1234:5678:9A00:0/64-104 from 100::/8 and port 25".
+   packets to ::1234:5678:9A00:0/64-104 from 2001:DB8::/32 and upper-layer-protocol tcp".
 </t>
  <t>
  <figure>
  <artwork>
-    +--------+-------------------------+-------------+----------+
-    | length | destination             | source      | port     |
-    +--------+-------------------------+-------------+----------+
-    | 0x0f   | 01 68 40 12 34 56 78 9A | 02 08 00 01 | 04 81 19 |
-    +--------+-------------------------+-------------+----------+
++--------+-------------------------+----------------------+----------+
+| length | destination             | source               | port     |
++--------+-------------------------+----------------------+----------+
+| 0x12   | 01 68 40 12 34 56 78 9A | 02 20 00 20 01 0D B8 | 03 81 06 |
++--------+-------------------------+----------------------+----------+
  </artwork>
  </figure>
  </t>
@@ -305,29 +305,37 @@
    Decoded:
 <figure>
 <artwork>
-    +-------+------------+------------------------------+
-    | Value |            |                              |
-    +-------+------------+------------------------------+
-    |  0x0f | length     | 16 octets (len&lt;240 1-octet)  |
-    |  0x01 | type       | Type 1 - Dest. IPv6 Prefix   |
-    |  0x68 | length     | 104 bit                      |
-    |  0x40 | offset     | 64 bit                       |
-    |  0x12 | prefix     |                              |
-    |  0x34 | prefix     |                              |
-    |  0x56 | prefix     |                              |
-    |  0x78 | prefix     |                              |
-    |  0x9A | prefix     |                              |
-    |  0x02 | type       | Type 2 - Source IPv6 Prefix  |
-    |  0x08 | length     | 8 bit                        |
-    |  0x00 | offset     | 0 bit                        |
-    |  0x01 | prefix     |                              |
-    |  0x04 | type       | Type 4 - Port                |
-    |  0x81 | numeric_op | end-of-list, value size=1, = |
-    |  0x19 | value      | 25                           |
-    +-------+------------+------------------------------+
+    +-------+------------+-------------------------------+
+    | Value |            |                               |
+    +-------+------------+-------------------------------+
+    |  0x12 | length     | 18 octets (len&lt;240 1-octet)   |
+    |  0x01 | type       | Type 1 - Dest. IPv6 Prefix    |
+    |  0x68 | length     | 104 bit                       |
+    |  0x40 | offset     | 64 bit                        |
+    |  0x12 | pattern    |                               |
+    |  0x34 | pattern    |                               |
+    |  0x56 | pattern    |                               |
+    |  0x78 | pattern    |                               |
+    |  0x9A | pattern    | (no padding needed)           |
+    |  0x02 | type       | Type 2 - Source IPv6 Prefix   |
+    |  0x20 | length     | 32 bit                        |
+    |  0x00 | offset     | 0 bit                         |
+    |  0x20 | pattern    |                               |
+    |  0x01 | pattern    |                               |
+    |  0x0D | pattern    |                               |
+    |  0xB8 | pattern    | (no padding needed)           |
+    |  0x03 | type       | Type 3 - upper-layer-proto    |
+    |  0x81 | numeric_op | end-of-list, value size=1, == |
+    |  0x06 | value      | 06                            |
+    +-------+------------+-------------------------------+
 </artwork>
 </figure>
-    This constitutes a NLRI with a NLRI length of 16 octets.
+    This constitutes a NLRI with a NLRI length of 18 octets.
+</t>
+<t>
+    Neither for the destination prefix pattern (length - offset = 40 bit) 
+    nor for the source prefix pattern (length - offset = 32 bit) any padding 
+    is needed (both patterns end on a octet boundary).
 </t>
 </section>
  <section title="Example 2" toc="exclude">
@@ -350,22 +358,29 @@
    Decoded:
 <figure>
 <artwork>
-    +-------+------------+------------------------------+
-    | Value |            |                              |
-    +-------+------------+------------------------------+
-    |  0x08 | length     | 8 octets (len&lt;240 1-octet)   |
-    |  0x01 | type       | Type 1 - Dest. IPv6 Prefix   |
-    |  0x68 | length     | 104 bit                      |
-    |  0x41 | offset     | 65 bit                       |
-    |  0x24 | prefix     | starting with the 66ths bit  |
-    |  0x68 | prefix     |                              |
-    |  0xac | prefix     |                              |
-    |  0xf1 | prefix     |                              |
-    |  0x34 | prefix     |                              |
-    +-------+------------+------------------------------+
+    +-------+-------------+-----------------------------+
+    | Value |             |                             |
+    +-------+-------------+-----------------------------+
+    |  0x08 | length      | 8 octets (len&lt;240 1-octet)  |
+    |  0x01 | type        | Type 1 - Dest. IPv6 Prefix  |
+    |  0x68 | length      | 104 bit                     |
+    |  0x41 | offset      | 65 bit                      |
+    |  0x24 | pattern     |                             |
+    |  0x68 | pattern     |                             |
+    |  0xac | pattern     |                             |
+    |  0xf1 | pattern     |                             |
+    |  0x34 | pattern/pad | (contains 1 bit padding)    |
+    +-------+-------------+-----------------------------+
 </artwork>
 </figure>
     This constitutes a NLRI with a NLRI length of 8 octets.
+</t>
+<t>
+    The destination prefix pattern is 104 - 65 = 39 bits in length. 
+    After the pattern one bit of padding needs to be added so that the 
+    component ends on a octet boundary. However, only the first 39 bits 
+    are actually used for bitwise pattern matching starting with a 65 bit 
+    offset from the topmost bit of the address. 
 </t>
 </section>
 
