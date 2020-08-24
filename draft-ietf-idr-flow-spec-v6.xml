@@ -242,7 +242,7 @@
       </t>
       <t>This component uses the Bitmask Operator (bitmask_op) described
       in <xref target="I-D.ietf-idr-rfc5575bis" /> Section 4.2.1.2. The
-      Type 12 component bitmask MUST be encoded as single byte bitmask
+      Type 12 component bitmask MUST be encoded as single octet bitmask
       (bitmask_op len=00).
       </t>
         <t>
