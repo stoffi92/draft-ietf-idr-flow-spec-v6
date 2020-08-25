@@ -519,9 +519,7 @@
          <ttcol align="left">Name</ttcol>
          <ttcol align="left">Reference</ttcol>
          <c>TBD</c>
-         <c>
-           Flow spec rt-redirect-ipv6 format
-         </c>
+         <c>Flow spec rt-redirect-ipv6 format</c>
          <c>[this document]</c>
    </texttable>
    </section>
