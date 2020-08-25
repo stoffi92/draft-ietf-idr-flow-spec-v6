@@ -455,7 +455,7 @@
    </t>
    <section title="Flow Spec IPv6 Component Types">
     <t>
-   IANA is requested to create and maintain a new registry entitled:
+   IANA is requested to create a new registry under the section "Flow Spec Component Types" entitled:
    "Flow Spec IPv6 Component Types" containing the initial entries as specified in
    <xref target="iana_flow_component_types" />.
    </t>
