@@ -93,8 +93,9 @@
   <t>
    This document analyzes the differences of IPv6 <xref target="RFC8200"></xref>
    flows description from those of traditional IPv4 packets and propose a
-   subset of new encoding formats to enable Dissemination of Flow
-   Specification Rules <xref target="I-D.ietf-idr-rfc5575bis" /> for IPv6.
+   subset of new Border Gateway Protocol <xref target="RFC4271"></xref> encoding formats 
+   to enable Dissemination of Flow Specification Rules <xref target="I-D.ietf-idr-rfc5575bis" /> 
+   for IPv6.
  </t>
  <t>
     This specification is an extension of the base <xref target="I-D.ietf-idr-rfc5575bis" />. 
