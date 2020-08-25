@@ -451,8 +451,9 @@
    </t>
    </section>
    <section anchor="IANA" title="IANA Considerations">
-   <t>This section complies with <xref target="RFC7153"></xref>
+   <t>This section complies with <xref target="RFC7153"></xref>.
    </t>
+   <section title="Flow Spec IPv6 Component Types">
     <t>
    IANA is requested to create and maintain a new registry entitled:
    "Flow Spec IPv6 Component Types" containing the initial entries as specified in
@@ -506,6 +507,8 @@
         </t>
     </list>
     </t>
+    </section>
+    <section title="Extended Community Flow Spec IPv6 Actions">
     <t>
         IANA maintains a registry entitled "Generic Transitive
         Experimental Use Extended Community Sub-Types". For the purpose of
@@ -521,6 +524,7 @@
          </c>
          <c>[this document]</c>
    </texttable>
+   </section>
  </section>
  <section title="Acknowledgements">
  <t>Authors would like to thank Pedro Marques, Hannes Gredler and Bruno
