@@ -177,7 +177,7 @@
         </list>
         </t>
      <t>
-        Length minus offest must always be 0 or more, otherwise this component is malformed. 
+        Length minus offset must always be 0 or more, otherwise this component is malformed. 
      </t>
    </section>
    <section anchor="type_2" title="Type 2 - Source IPv6 Prefix" toc="include">
