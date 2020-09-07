@@ -149,24 +149,40 @@
    also apply to IPv6. Note that even if the definitions are the same (and
    not repeated here), the number space is managed separately (<xref target="IANA" />).
    </t>
-   <section anchor="type_1" title="Type 1 - Destination IPv6 Prefix" toc="include">
-	   <t>Encoding: &lt;type (1 octet), length (1 octet), offset (1 octet), prefix (variable)&gt;
-	  </t>
+<section anchor="type_1" title="Type 1 - Destination IPv6 Prefix" toc="include">
+	   <t>Encoding: &lt;type (1 octet), length (1 octet), offset (1 octet), pattern (variable), padding(variable) &gt;</t>
 	  <t>Defines the destination prefix to match.  The offset has been
       defined to allow for flexible matching on part of the IPv6 address
       where it is required to skip (don't care) of N first bits of the address.
       This can be especially useful where part of the IPv6 address
       consists of an embedded IPv4 address and matching needs to happen
-      only on the embedded IPv4 address. The encoded prefix contains
+      only on the embedded IPv4 address. The encoded pattern contains
       enough octets for the bits used in matching (length minus offset
       bits).
 	  </t>
+      <t>
+        <list style="hanging">
+        <t hangText="length -">The length field indicates the N-th leftmost bit in the address where 
+           bitwise pattern matching stops.
+        </t>
+        <t hangText="offset -">The offset field indicates the number of leftmost address bits to 
+           skip before bitwise pattern matching starts.
+        </t>
+        <t hangText="pattern -">Contains the matching pattern. The length of the pattern is defined by the 
+           number of bits needed for pattern matching (length minus offset).
+        </t>
+        <t hangText="padding -">The minimum number of bits required to pad the component to an octet boundary.
+           Padding bits MUST be 0 on encoding and MUST be ignored on decoding.
+        </t>
+        </list>
+        </t>
+     <t>
+        Length minus offest must always be 0 or more, otherwise this component is malformed. 
+     </t>
    </section>
    <section anchor="type_2" title="Type 2 - Source IPv6 Prefix" toc="include">
-	   <t>Encoding: &lt;type (1 octet), length (1 octet), offset
-      (1 octet), prefix (variable)&gt;
-      </t>
-	  <t>Defines the source prefix to match. The length, offset and prefix
+	   <t>Encoding: &lt;type (1 octet), length (1 octet), offset (1 octet), pattern (variable), padding(variable) &gt;</t>
+	  <t>Defines the source prefix to match. The length, offset, pattern and padding
           are the same as in <xref target="type_1" />
 	  </t>
 	 </section>
