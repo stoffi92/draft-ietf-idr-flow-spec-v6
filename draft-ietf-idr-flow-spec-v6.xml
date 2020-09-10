@@ -186,7 +186,7 @@
           are the same as in <xref target="type_1" />
 	  </t>
 	 </section>
-   	 <section anchor="type_3" title="Type 3 - Next Header">
+   	 <section anchor="type_3" title="Type 3 - Upper-Layer Protocol">
 	   <t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
       </t>
 	  <t>Contains a list of {numeric_op, value} pairs that
@@ -525,7 +525,7 @@
         <t>
         + Type Value: 3<vspace/>
         + IPv4 Name: IP Protocol<vspace/>
-        + IPv6 Name: Next Header<vspace/>
+        + IPv6 Name: Upper-Layer Protocol<vspace/>
         + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /> [this document]<vspace/>
         </t>
         <t>
