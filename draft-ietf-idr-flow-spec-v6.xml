@@ -472,58 +472,139 @@
    </t>
    <section title="Flow Spec IPv6 Component Types">
     <t>
-   IANA is requested to create a new registry under the section "Flow Spec Component Types" entitled:
-   "Flow Spec IPv6 Component Types" containing the initial entries as specified in
-   <xref target="iana_flow_component_types" />.
-   </t>
-       <texttable anchor="iana_flow_component_types" title="Registry: Flow Spec IPv6 Component Types">
-          <ttcol align="left">Value</ttcol>
-          <ttcol align="left">Name</ttcol>
-          <ttcol align="left">Reference</ttcol>
-          <c>1</c>   <c>Destination IPv6 Prefix</c>  <c>[this document]</c>
-          <c>2</c>   <c>Source IPv6 Prefix</c>       <c>[this document]</c>
-          <c>3</c>   <c>Next Header</c>         <c>[this document]</c>
-          <c>4</c>   <c>Port</c>                <c>[this document]</c>
-          <c>5</c>   <c>Destination port</c>    <c>[this document]</c>
-          <c>6</c>   <c>Source port</c>         <c>[this document]</c>
-          <c>7</c>   <c>ICMPv6 type</c>         <c>[this document]</c>
-          <c>8</c>   <c>ICMPv6 code</c>         <c>[this document]</c>
-          <c>9</c>   <c>TCP flags</c>           <c>[this document]</c>
-          <c>10</c>  <c>Packet length</c>       <c>[this document]</c>
-          <c>11</c>  <c>DSCP</c>                <c>[this document]</c>
-          <c>12</c>  <c>Fragment</c>            <c>[this document]</c>
-          <c>13</c>  <c>Flow Label</c>            <c>[this document]</c>
-    </texttable>
-    <t>
-      In order to manage the limited number space and accommodate several
-      usages, the following policies defined by <xref target="RFC8126" />
-      are used:
+    IANA has created and maintains a registry entitled "Flow Spec Component Types". 
+    IANA is requested to add [this document] to the reference for this registry.  
+    Furthermore the registry should be rewritten to also contain the IPv6 Flow Specification 
+    Component Types as described below.
     </t>
-    <texttable anchor="iana_flow_component_types_policies" title="Flow Spec IPv6 Component Types Registration Policy">
-          <ttcol align="left">Type Values</ttcol>
-          <ttcol align="left">Policy</ttcol>
-          <c>0</c>           <c>Reserved</c>
-          <c>[1 .. 127]</c>   <c>Specification Required</c>
-          <c>[128 .. 254]</c>   <c>Expert Review</c>
-          <c>255</c>   <c>Reserved</c>
-    </texttable>
+    <section title="Registry Template">
     <t>
     <list style="hanging" hangIndent="6">
-        <t hangText="Guidance for Experts:">
-        <vspace />
-        128-254 requires 
-        Expert Review as the registration policy. The Experts are expected 
-        to check the clarity of purpose and use of the requested code points. 
-        The Experts must also verify that any 
-        specification produced in the IETF that requests one of these code
-        points has been made available for review by the IDR working group
-        and that any specification produced outside the IETF does not
-        conflict with work that is active or already published within the
-        IETF. It must be pointed out that introducing new component types may 
-        break interoperability with existing implementations of this protocol.
-        </t>
+     <t hangText="Type Value:">
+       <vspace />
+        Contains the assigned Flow Specification component type value.
+     </t>
+     <t hangText="IPv4 Name:">
+       <vspace />
+        Contains the associated IPv4 Flow Specification component name as specified in 
+        <xref target="I-D.ietf-idr-rfc5575bis" />.
+     </t>
+     <t hangText="IPv6 Name:">
+       <vspace />
+        Contains the associated IPv6 Flow Specification component name as specified in
+        this document.
+     </t>
+     <t hangText="Reference:">
+       <vspace />
+        Contains referenced to the specifications.
+     </t>
     </list>
     </t>
+    </section>
+    <section title="Registry Contents">
+    <t>
+        <list>
+        <t>
+        + Type Value: 0<vspace/>
+        + IPv4 Name: Reserved<vspace/>
+        + IPv6 Name: Reserved<vspace/>
+        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /><vspace/>
+        </t>
+        <t>
+        + Type Value: 1<vspace/>
+        + IPv4 Name: Destination Prefix<vspace/>
+        + IPv6 Name: Destination IPv6 Prefix<vspace/>
+        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /> [this document]<vspace/>
+        </t>
+        <t>
+        + Type Value: 2<vspace/>
+        + IPv4 Name: Source Prefix<vspace/>
+        + IPv6 Name: Source IPv6 Prefix<vspace/>
+        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /> [this document]<vspace/>
+        </t>
+        <t>
+        + Type Value: 3<vspace/>
+        + IPv4 Name: IP Protocol<vspace/>
+        + IPv6 Name: Next Header<vspace/>
+        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /> [this document]<vspace/>
+        </t>
+        <t>
+        + Type Value: 4<vspace/>
+        + IPv4 Name: Port<vspace/>
+        + IPv6 Name: Port<vspace/>
+        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /><vspace/>
+        </t>
+        <t>
+        + Type Value: 5<vspace/>
+        + IPv4 Name: Destination Port<vspace/>
+        + IPv6 Name: Destination Port<vspace/>
+        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /><vspace/>
+        </t>
+        <t>
+        + Type Value: 6<vspace/>
+        + IPv4 Name: Source Port<vspace/>
+        + IPv6 Name: Source Port<vspace/>
+        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /><vspace/>
+        </t>
+        <t>
+        + Type Value: 7<vspace/>
+        + IPv4 Name: ICMP Type<vspace/>
+        + IPv6 Name: ICMPv6 Type<vspace/>
+        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /> [this document]<vspace/>
+        </t>
+        <t>
+        + Type Value: 8<vspace/>
+        + IPv4 Name: ICMP Code<vspace/>
+        + IPv6 Name: ICMPv6 Code<vspace/>
+        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /> [this document]<vspace/>
+        </t>
+        <t>
+        + Type Value: 9<vspace/>
+        + IPv4 Name: TCP flags<vspace/>
+        + IPv6 Name: TCP flags<vspace/>
+        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /><vspace/>
+        </t>
+        <t>
+        + Type Value: 10<vspace/>
+        + IPv4 Name: Packet length<vspace/>
+        + IPv6 Name: Packet length<vspace/>
+        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /><vspace/>
+        </t>
+        <t>
+        + Type Value: 11<vspace/>
+        + IPv4 Name: DSCP<vspace/>
+        + IPv6 Name: DSCP<vspace/>
+        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /><vspace/>
+        </t>
+        <t>
+        + Type Value: 12<vspace/>
+        + IPv4 Name: Fragment<vspace/>
+        + IPv6 Name: Fragment<vspace/>
+        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /> [this document]<vspace/>
+        </t>
+        <t>
+        + Type Value: 13<vspace/>
+        + IPv4 Name: Unassigned<vspace/>
+        + IPv6 Name: Flow Label<vspace/>
+        + Reference: [this document]<vspace/>
+        </t>
+        <t>
+        + Type Value: 14-254<vspace/>
+        + IPv4 Name: Unassigned<vspace/>
+        + IPv6 Name: Unassigned<vspace/>
+        + Reference: <vspace/>
+        </t>
+        <t>
+        + Type Value: 255<vspace/>
+        + IPv4 Name: Reserved<vspace/>
+        + IPv6 Name: Reserved<vspace/>
+        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /><vspace/>
+        </t>
+        </list>
+    </t>
+    </section>
+
+
     </section>
     <section title="Extended Community Flow Spec IPv6 Actions">
     <t>
