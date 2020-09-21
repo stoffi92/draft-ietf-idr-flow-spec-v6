@@ -304,17 +304,17 @@
     <section title="Encoding Example">
  <section title="Example 1" toc="exclude">
 <t>
-   The following example demonstrates the prefix encoding for: "all
-   packets to ::1234:5678:9A00:0/64-104 from 2001:DB8::/32 and upper-layer-protocol tcp".
+   The following example demonstrates the prefix encoding for:
+   "packets from ::1234:5678:9A00:0/64-104 to 2001:DB8::/32 and upper-layer-protocol tcp".
 </t>
  <t>
  <figure>
  <artwork>
-+--------+-------------------------+----------------------+----------+
-| length | destination             | source               | ul-proto |
-+--------+-------------------------+----------------------+----------+
-| 0x12   | 01 68 40 12 34 56 78 9A | 02 20 00 20 01 0D B8 | 03 81 06 |
-+--------+-------------------------+----------------------+----------+
++--------+----------------------+-------------------------+----------+
+| length | destination          | source                  | ul-proto |
++--------+----------------------+-------------------------+----------+
+| 0x12   | 01 20 00 20 01 0D B8 | 02 68 40 12 34 56 78 9A | 03 81 06 |
++--------+----------------------+-------------------------+----------+
  </artwork>
  </figure>
  </t>
@@ -327,6 +327,13 @@
     +-------+------------+-------------------------------+
     |  0x12 | length     | 18 octets (len&lt;240 1-octet)   |
     |  0x01 | type       | Type 1 - Dest. IPv6 Prefix    |
+    |  0x20 | length     | 32 bit                        |
+    |  0x00 | offset     | 0 bit                         |
+    |  0x20 | pattern    |                               |
+    |  0x01 | pattern    |                               |
+    |  0x0D | pattern    |                               |
+    |  0xB8 | pattern    | (no padding needed)           |
+    |  0x02 | type       | Type 2 - Source IPv6 Prefix   |
     |  0x68 | length     | 104 bit                       |
     |  0x40 | offset     | 64 bit                        |
     |  0x12 | pattern    |                               |
@@ -334,13 +341,6 @@
     |  0x56 | pattern    |                               |
     |  0x78 | pattern    |                               |
     |  0x9A | pattern    | (no padding needed)           |
-    |  0x02 | type       | Type 2 - Source IPv6 Prefix   |
-    |  0x20 | length     | 32 bit                        |
-    |  0x00 | offset     | 0 bit                         |
-    |  0x20 | pattern    |                               |
-    |  0x01 | pattern    |                               |
-    |  0x0D | pattern    |                               |
-    |  0xB8 | pattern    | (no padding needed)           |
     |  0x03 | type       | Type 3 - upper-layer-proto    |
     |  0x81 | numeric_op | end-of-list, value size=1, == |
     |  0x06 | value      | 06                            |
@@ -350,24 +350,24 @@
     This constitutes a NLRI with a NLRI length of 18 octets.
 </t>
 <t>
-    Neither for the destination prefix pattern (length - offset = 40 bit) 
-    nor for the source prefix pattern (length - offset = 32 bit) any padding 
+    Neither for the destination prefix pattern (length - offset = 32 bit) 
+    nor for the source prefix pattern (length - offset = 40 bit) any padding 
     is needed (both patterns end on a octet boundary).
 </t>
 </section>
  <section title="Example 2" toc="exclude">
 <t>
    The following example demonstrates the prefix encoding for: "all
-   packets to ::1234:5678:9A00:0/65-104".
+   packets from ::1234:5678:9A00:0/65-104 to 2001:DB8::/32".
 </t>
  <t>
  <figure>
  <artwork>
-    +--------+-------------------------+
-    | length | destination             |
-    +--------+-------------------------+
-    | 0x08   | 01 68 41 24 68 ac f1 34 |
-    +--------+-------------------------+
+   +--------+----------------------+-------------------------+
+   | length | destination          | source                  |
+   +--------+----------------------+-------------------------+
+   | 0x0f   | 01 20 00 20 01 0D B8 | 02 68 41 24 68 ac f1 34 |
+   +--------+----------------------+-------------------------+
  </artwork>
  </figure>
  </t>
@@ -375,25 +375,32 @@
    Decoded:
 <figure>
 <artwork>
-    +-------+-------------+-----------------------------+
-    | Value |             |                             |
-    +-------+-------------+-----------------------------+
-    |  0x08 | length      | 8 octets (len&lt;240 1-octet)  |
-    |  0x01 | type        | Type 1 - Dest. IPv6 Prefix  |
-    |  0x68 | length      | 104 bit                     |
-    |  0x41 | offset      | 65 bit                      |
-    |  0x24 | pattern     |                             |
-    |  0x68 | pattern     |                             |
-    |  0xac | pattern     |                             |
-    |  0xf1 | pattern     |                             |
-    |  0x34 | pattern/pad | (contains 1 bit padding)    |
-    +-------+-------------+-----------------------------+
+    +-------+-------------+-------------------------------+
+    | Value |             |                               |
+    +-------+-------------+-------------------------------+
+    |  0x0f | length      | 15 octets (len&lt;240 1-octet)   |
+    |  0x01 | type        | Type 1 - Dest. IPv6 Prefix    |
+    |  0x20 | length      | 32 bit                        |
+    |  0x00 | offset      | 0 bit                         |
+    |  0x20 | pattern     |                               |
+    |  0x01 | pattern     |                               |
+    |  0x0D | pattern     |                               |
+    |  0xB8 | pattern     | (no padding needed)           |
+    |  0x02 | type        | Type 2 - Source IPv6 Prefix   |
+    |  0x68 | length      | 104 bit                       |
+    |  0x41 | offset      | 65 bit                        |
+    |  0x24 | pattern     |                               |
+    |  0x68 | pattern     |                               |
+    |  0xac | pattern     |                               |
+    |  0xf1 | pattern     |                               |
+    |  0x34 | pattern/pad | (contains 1 bit padding)      |
+    +-------+-------------+-------------------------------+
 </artwork>
 </figure>
-    This constitutes a NLRI with a NLRI length of 8 octets.
+    This constitutes a NLRI with a NLRI length of 15 octets.
 </t>
 <t>
-    The destination prefix pattern is 104 - 65 = 39 bits in length. 
+    The source prefix pattern is 104 - 65 = 39 bits in length. 
     After the pattern one bit of padding needs to be added so that the 
     component ends on a octet boundary. However, only the first 39 bits 
     are actually used for bitwise pattern matching starting with a 65 bit 
