@@ -19,7 +19,7 @@
 <?rfc subcompact="no" ?>
 <?rfc iprnotified="no" ?>
 <?rfc strict="no" ?>
-<rfc category="std" docName="draft-ietf-idr-flow-spec-v6-15"  ipr="trust200902">
+<rfc category="std" docName="draft-ietf-idr-flow-spec-v6-16"  ipr="trust200902" updates="I-D.ietf-idr-rfc5575bis">
   <front>
   <title abbrev="IPv6 Flow Specification">Dissemination of Flow Specification Rules for IPv6</title>
    <author role="editor" fullname="Christoph Loibl" initials="C.L."
@@ -80,7 +80,9 @@
    the purpose of rate limiting or filtering IPv4 protocol data packets.
    </t>
    <t>
-   This specification extends I-D.ietf-idr-rfc5575bis with IPv6 functionality.
+   This document extends I-D.ietf-idr-rfc5575bis with IPv6 functionality.
+   It also updates I-D.ietf-idr-rfc5575bis by changing the IANA Flow Spec 
+   Component Types registry.
    </t>
     </abstract>
   </front>
@@ -482,7 +484,7 @@
     IANA has created and maintains a registry entitled "Flow Spec Component Types". 
     IANA is requested to add [this document] to the reference for this registry.  
     Furthermore the registry should be rewritten to also contain the IPv6 Flow Specification 
-    Component Types as described below.
+    Component Types as described below. The registration procedure should remain unchanged.
     </t>
     <section title="Registry Template">
     <t>
@@ -515,7 +517,7 @@
         + Type Value: 0<vspace/>
         + IPv4 Name: Reserved<vspace/>
         + IPv6 Name: Reserved<vspace/>
-        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /><vspace/>
+        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /> [this document]<vspace/>
         </t>
         <t>
         + Type Value: 1<vspace/>
@@ -539,19 +541,19 @@
         + Type Value: 4<vspace/>
         + IPv4 Name: Port<vspace/>
         + IPv6 Name: Port<vspace/>
-        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /><vspace/>
+        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /> [this document]<vspace/>
         </t>
         <t>
         + Type Value: 5<vspace/>
         + IPv4 Name: Destination Port<vspace/>
         + IPv6 Name: Destination Port<vspace/>
-        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /><vspace/>
+        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /> [this document]<vspace/>
         </t>
         <t>
         + Type Value: 6<vspace/>
         + IPv4 Name: Source Port<vspace/>
         + IPv6 Name: Source Port<vspace/>
-        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /><vspace/>
+        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /> [this document]<vspace/>
         </t>
         <t>
         + Type Value: 7<vspace/>
@@ -569,19 +571,19 @@
         + Type Value: 9<vspace/>
         + IPv4 Name: TCP flags<vspace/>
         + IPv6 Name: TCP flags<vspace/>
-        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /><vspace/>
+        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /> [this document]<vspace/>
         </t>
         <t>
         + Type Value: 10<vspace/>
         + IPv4 Name: Packet length<vspace/>
         + IPv6 Name: Packet length<vspace/>
-        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /><vspace/>
+        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /> [this document]<vspace/>
         </t>
         <t>
         + Type Value: 11<vspace/>
         + IPv4 Name: DSCP<vspace/>
         + IPv6 Name: DSCP<vspace/>
-        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /><vspace/>
+        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /> [this document]<vspace/>
         </t>
         <t>
         + Type Value: 12<vspace/>
@@ -605,7 +607,7 @@
         + Type Value: 255<vspace/>
         + IPv4 Name: Reserved<vspace/>
         + IPv6 Name: Reserved<vspace/>
-        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /><vspace/>
+        + Reference: <xref target="I-D.ietf-idr-rfc5575bis" /> [this document]<vspace/>
         </t>
         </list>
     </t>
