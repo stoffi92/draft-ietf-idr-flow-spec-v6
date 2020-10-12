@@ -164,10 +164,10 @@
 	  </t>
       <t>
         <list style="hanging">
-        <t hangText="length -">The length field indicates the N-th leftmost bit in the address where 
-           bitwise pattern matching stops.
+        <t hangText="length -">The length field indicates the N-th most significant bit in the address where 
+           bitwise pattern matching stops. 
         </t>
-        <t hangText="offset -">The offset field indicates the number of leftmost address bits to 
+        <t hangText="offset -">The offset field indicates the number of most significant address bits to 
            skip before bitwise pattern matching starts.
         </t>
         <t hangText="pattern -">Contains the matching pattern. The length of the pattern is defined by the 
@@ -179,7 +179,9 @@
         </list>
         </t>
      <t>
-        Length minus offset must always be 0 or more, otherwise this component is malformed. 
+        In the case Length minus Offset is 0 every address matches. 
+        Length MUST always be in the range 0-128 and Length minus Offset MUST always be 0 or more,
+        otherwise this component is malformed. 
      </t>
    </section>
    <section anchor="type_2" title="Type 2 - Source IPv6 Prefix" toc="include">
