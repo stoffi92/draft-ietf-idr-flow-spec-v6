@@ -148,8 +148,9 @@
    </t>
    <t>
    Types 4, 5, 6, 9, 10 and 11, as defined in <xref target="I-D.ietf-idr-rfc5575bis" />,
-   also apply to IPv6. Note that even if the definitions are the same (and
-   not repeated here), the number space is managed separately (<xref target="IANA" />).
+   also apply to IPv6. Note that IANA is requested to update the "Flow Spec Component Types" registry in order 
+   to contain both IPv4 and IPv6 Flow Specification component type numbers in a single registry
+   (<xref target="IANA" />).   
    </t>
 <section anchor="type_1" title="Type 1 - Destination IPv6 Prefix" toc="include">
 	   <t>Encoding: &lt;type (1 octet), length (1 octet), offset (1 octet), pattern (variable), padding(variable) &gt;</t>
