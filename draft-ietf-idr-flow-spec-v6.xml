@@ -19,7 +19,7 @@
 <?rfc subcompact="no" ?>
 <?rfc iprnotified="no" ?>
 <?rfc strict="no" ?>
-<rfc category="std" docName="draft-ietf-idr-flow-spec-v6-16"  ipr="trust200902" updates="I-D.ietf-idr-rfc5575bis">
+<rfc category="std" docName="draft-ietf-idr-flow-spec-v6-17"  ipr="trust200902" updates="I-D.ietf-idr-rfc5575bis">
   <front>
   <title abbrev="IPv6 Flow Specification">Dissemination of Flow Specification Rules for IPv6</title>
    <author role="editor" fullname="Christoph Loibl" initials="C.L."
