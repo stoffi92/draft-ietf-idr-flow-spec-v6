@@ -278,7 +278,7 @@
         </t>
         <t>Bitmask values:
         <list style="hanging">
-        <t hangText="IsF -">Is a fragment - match if IPv6 Fragment Header (<xref target="RFC8200" /> Section 4.5)
+        <t hangText="IsF -">Is a fragment other than the first - match if IPv6 Fragment Header (<xref target="RFC8200" /> Section 4.5)
             Fragment Offset is not 0
         </t>
         <t hangText="FF -">First fragment - match if IPv6 Fragment Header (<xref target="RFC8200" /> Section 4.5)
