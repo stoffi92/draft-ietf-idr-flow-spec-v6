@@ -8,7 +8,6 @@
 <!ENTITY RFC4760 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4760.xml">
 <!ENTITY RFC5701 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5701.xml">
 <!ENTITY RFC7153 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7153.xml">
-<!ENTITY RFC8126 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8126.xml">
 <!ENTITY RFC8174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml">
 <!ENTITY I-D.ietf-idr-rfc5575bis SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-idr-rfc5575bis.xml">
 ]>
@@ -685,7 +684,6 @@ Email: akarch@cisco.com
       &RFC4760;
 	  &RFC5701;
 	  &RFC7153;
-      &RFC8126;
       &RFC8174;
       &I-D.ietf-idr-rfc5575bis;
 	</references>
