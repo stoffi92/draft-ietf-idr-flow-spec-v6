@@ -154,9 +154,10 @@
    </t>
 <section anchor="type_1" title="Type 1 - Destination IPv6 Prefix" toc="include">
 	   <t>Encoding: &lt;type (1 octet), length (1 octet), offset (1 octet), pattern (variable), padding(variable) &gt;</t>
-	  <t>Defines the destination prefix to match.  The offset has been
-      defined to allow for flexible matching on part of the IPv6 address
-      where it is required to skip (don't care) of N first bits of the address.
+	  <t>Defines the destination prefix to match.  
+      The offset has been defined to allow for flexible matching to portions of an
+      IPv6 address where one is required to skip over the first N bits of the address
+      (these bits skipped are often indicated as "don’t care" bits).
       This can be especially useful where part of the IPv6 address
       consists of an embedded IPv4 address and matching needs to happen
       only on the embedded IPv4 address. The encoded pattern contains
