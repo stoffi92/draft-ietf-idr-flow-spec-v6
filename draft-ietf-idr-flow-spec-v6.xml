@@ -74,7 +74,8 @@
 	<keyword>V6</keyword>
     <abstract>
    <t>
-   Dissemination of Flow Specification Rules provides a Border Gateway Protocol
+   Dissemination of Flow Specification Rules I-D.ietf-idr-rfc5575bis 
+   provides a Border Gateway Protocol
    extension for the propagation of traffic flow information for
    the purpose of rate limiting or filtering IPv4 protocol data packets.
    </t>
