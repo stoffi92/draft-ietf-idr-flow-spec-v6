@@ -356,9 +356,10 @@
     This constitutes a NLRI with a NLRI length of 18 octets.
 </t>
 <t>
-    Neither for the destination prefix pattern (length - offset = 32 bit) 
-    nor for the source prefix pattern (length - offset = 40 bit) any padding 
-    is needed (both patterns end on a octet boundary).
+    Padding is not needed either for the destination prefix pattern
+    (length - offset = 32 bit) or for the source prefix pattern
+    (length - offset = 40 bit), as both patterns end on an octet
+    boundary.
 </t>
 </section>
  <section title="Example 2" toc="exclude">
