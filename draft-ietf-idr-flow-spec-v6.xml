@@ -466,6 +466,11 @@
        <xref target="RFC5701"></xref> Section 2 with the high-order
        octet of the Type always set to 0x80 and the Sub-Type always TBD.
        </t>
+       <t>The Local Administrator sub-field contains a number from a numbering
+          space that is administered by the organization to which the IP
+          address carried in the Global Administrator sub-field has been
+          assigned by an appropriate authority. 
+       </t>
        <t>Interferes with: All BGP Flow Specification redirect Traffic Filtering
            Actions (with itself and those specified in
            <xref target="I-D.ietf-idr-rfc5575bis" /> Section 7.4).
