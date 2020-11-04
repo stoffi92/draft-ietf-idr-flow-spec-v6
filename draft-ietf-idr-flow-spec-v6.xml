@@ -89,14 +89,14 @@
   <middle>
      <section anchor="intro" title="Introduction">
 	 <t>The growing amount of IPv6 traffic in private and public networks
-   requires the extension of tools used in IPv4-only networks to be
-   also capable of supporting IPv6 data packets.
+   requires the extension of tools used in IPv4-only networks to also support
+   IPv6 data packets.
   </t>
   <t>
-   This document analyzes the differences of IPv6 <xref target="RFC8200"></xref>
-   flows description from those of traditional IPv4 packets and propose a
-   subset of new Border Gateway Protocol <xref target="RFC4271"></xref> encoding formats 
-   to enable Dissemination of Flow Specification Rules <xref target="I-D.ietf-idr-rfc5575bis" /> 
+   This document analyzes the differences between describing IPv6
+   <xref target="RFC8200"></xref> flows and those of IPv4 packets. It specifies
+   new Border Gateway Protocol <xref target="RFC4271"></xref> encoding formats to enable
+   Dissemination of Flow Specification Rules <xref target="I-D.ietf-idr-rfc5575bis" />
    for IPv6.
  </t>
  <t>
