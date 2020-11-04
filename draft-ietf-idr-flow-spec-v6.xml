@@ -18,7 +18,7 @@
 <?rfc subcompact="no" ?>
 <?rfc iprnotified="no" ?>
 <?rfc strict="no" ?>
-<rfc category="std" docName="draft-ietf-idr-flow-spec-v6-19"  ipr="trust200902" updates="I-D.ietf-idr-rfc5575bis">
+<rfc category="std" docName="draft-ietf-idr-flow-spec-v6-20"  ipr="trust200902" updates="I-D.ietf-idr-rfc5575bis">
   <front>
   <title abbrev="IPv6 Flow Specification">Dissemination of Flow Specification Rules for IPv6</title>
    <author role="editor" fullname="Christoph Loibl" initials="C.L."
@@ -184,6 +184,11 @@
         Length = Offset = 0 matches every address, otherwise Length MUST be in the range Offset &lt; Length  &lt; 129 
         or the component is malformed.
      </t>
+    <t>
+        Note: This Flow Specification component can be represented by the notation ipv6address/length if offset is 0, or  
+        ipv6address/offset-length. The ipv6address in this notation is the textual IPv6 representation of the pattern 
+        shifted to the right by the number of offset bits. See also <xref target="examples" />.    
+    </t>
    </section>
    <section anchor="type_2" title="Type 2 - Source IPv6 Prefix" toc="include">
 	   <t>Encoding: &lt;type (1 octet), length (1 octet), offset (1 octet), pattern (variable), padding(variable) &gt;</t>
@@ -306,7 +311,7 @@
       (numeric_op len=00, len=01 or len=10).
       </t>
 	 </section>
-    <section title="Encoding Example">
+    <section title="Encoding Example" anchor="examples">
  <section title="Example 1" toc="exclude">
 <t>
    The following example demonstrates the prefix encoding for:
