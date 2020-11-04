@@ -181,7 +181,7 @@
         </list>
         </t>
      <t>
-        Length = Offset = 0 matches every address, otherwise Length MUST be in the range Offset &lt; Length  &lt; 129 
+        length = offset = 0 matches every address, otherwise length MUST be in the range offset &lt; length  &lt; 129 
         or the component is malformed.
      </t>
     <t>
