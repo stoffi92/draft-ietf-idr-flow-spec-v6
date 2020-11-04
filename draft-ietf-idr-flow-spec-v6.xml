@@ -18,7 +18,7 @@
 <?rfc subcompact="no" ?>
 <?rfc iprnotified="no" ?>
 <?rfc strict="no" ?>
-<rfc category="std" docName="draft-ietf-idr-flow-spec-v6-17"  ipr="trust200902" updates="I-D.ietf-idr-rfc5575bis">
+<rfc category="std" docName="draft-ietf-idr-flow-spec-v6-19"  ipr="trust200902" updates="I-D.ietf-idr-rfc5575bis">
   <front>
   <title abbrev="IPv6 Flow Specification">Dissemination of Flow Specification Rules for IPv6</title>
    <author role="editor" fullname="Christoph Loibl" initials="C.L."
@@ -181,9 +181,8 @@
         </list>
         </t>
      <t>
-        In the case Length minus Offset is 0 every address matches. 
-        Length MUST always be in the range 0-128 and Length minus Offset MUST always be 0 or more,
-        otherwise this component is malformed. 
+        Length = Offset = 0 matches every address, otherwise Length MUST be in the range Offset &lt; Length  &lt; 129 
+        or the component is malformed.
      </t>
    </section>
    <section anchor="type_2" title="Type 2 - Source IPv6 Prefix" toc="include">
