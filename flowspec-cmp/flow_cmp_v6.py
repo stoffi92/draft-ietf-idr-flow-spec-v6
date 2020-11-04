@@ -98,7 +98,7 @@ def flow_rule_cmp_v6(a, b):
         if comp_a.component_type in (IP_DESTINATION, IP_SOURCE):
             if comp_a.offset < comp_b.offset:
                 return A_HAS_PRECEDENCE
-            if comp_a.offset < comp_b.offset:
+            if comp_a.offset > comp_b.offset:
                 return B_HAS_PRECEDENCE
             # both components have the same offset
             # assuming comp_a.value, comp_b.value of type

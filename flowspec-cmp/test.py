@@ -91,7 +91,7 @@ class TestFlowCmp(unittest.TestCase):
             FS_IPv6_prefix_component(ipaddress.IPv6Network('0200::/8'), offset=3, component_type=IP_DESTINATION),
             ])
         b = FS_nlri(components=[
-            FS_IPv6_prefix_component(ipaddress.IPv6Network('0301::/16'), offset=4, component_type=IP_DESTINATION),
+            FS_IPv6_prefix_component(ipaddress.IPv6Network('0200::/8'), offset=4, component_type=IP_DESTINATION),
             ])
         self.assertEqual(flow_rule_cmp(a, b), A_HAS_PRECEDENCE)
         a, b = b, a
@@ -100,7 +100,7 @@ class TestFlowCmp(unittest.TestCase):
             FS_IPv6_prefix_component(ipaddress.IPv6Network('0200::/8'), offset=3, component_type=IP_SOURCE),
             ])
         b = FS_nlri(components=[
-            FS_IPv6_prefix_component(ipaddress.IPv6Network('0301::/16'), offset=4, component_type=IP_SOURCE),
+            FS_IPv6_prefix_component(ipaddress.IPv6Network('0200::/8'), offset=4, component_type=IP_SOURCE),
             ])
         self.assertEqual(flow_rule_cmp(a, b), A_HAS_PRECEDENCE)
         a, b = b, a
