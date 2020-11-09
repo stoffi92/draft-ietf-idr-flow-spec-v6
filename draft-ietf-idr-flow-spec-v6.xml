@@ -147,7 +147,8 @@
    component types and parameter encodings for IPv6.
    </t>
    <t>
-   Types 4, 5, 6, 9, 10 and 11, as defined in <xref target="I-D.ietf-idr-rfc5575bis" />,
+   Types 4 (Port), 5 (Destination Port), 6 (Source Port), 9 (TCP flags), 10 (Packet length) and 11 (DSCP), 
+   as defined in <xref target="I-D.ietf-idr-rfc5575bis" />,
    also apply to IPv6. Note that IANA is requested to update the "Flow Spec Component Types" registry in order 
    to contain both IPv4 and IPv6 Flow Specification component type numbers in a single registry
    (<xref target="IANA" />).   
