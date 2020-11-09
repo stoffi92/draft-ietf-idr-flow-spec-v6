@@ -430,7 +430,7 @@
     reused with new consideration for the IPv6 prefix offset.  As long
     as the offsets are equal, the comparison is the same, retaining
     longest-prefix-match semantics.  If the offsets are not equal, the
-    lowest offset has precedence, as this flow matches the most
+    lowest offset has precedence, as this Flow Specification matches the most
     significant bit.
 	</t>
     <t>
