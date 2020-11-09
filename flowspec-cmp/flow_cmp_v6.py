@@ -1,12 +1,12 @@
 """
 Copyright (c) 2020 IETF Trust and the persons identified as authors
-of draft-ietf-idr-flow-spec-v6. All rights reserved.
+of the code. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, is permitted pursuant to, and subject to the license
 terms contained in, the Simplified BSD License set forth in Section
 4.c of the IETF Trust’s Legal Provisions Relating to IETF Documents
-(http://trustee.ietf.org/license-info).
+(https://trustee.ietf.org/license-info).
 """
 
 import itertools
@@ -29,7 +29,7 @@ class FS_IPv6_prefix_component:
                  component_type=IP_DESTINATION):
         self.offset = offset
         self.component_type = component_type
-        # make sure if offset != 0 that non of the 
+        # make sure if offset != 0 that none of the 
         # first offset bits are set in the prefix
         self.value = prefix
         if offset != 0:
@@ -44,7 +44,7 @@ class FS_nlri(object):
     """
     FS_nlri class implementation that allows sorting.
 
-    By calling .sort() on a array of FS_nlri objects these 
+    By calling .sort() on an array of FS_nlri objects these 
     will be sorted according to the flow_rule_cmp algorithm.
 
     Example:
@@ -59,7 +59,7 @@ class FS_nlri(object):
                           value=bytearray([0,1,2,3,4,5,6])),
              ]),
            ]
-    nlri.sort() # sorts the array accorinding to the algorithm
+    nlri.sort() # sorts the array according to the algorithm
     """
     def __init__(self, components = None):
         """
