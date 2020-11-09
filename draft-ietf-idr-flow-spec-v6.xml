@@ -194,7 +194,7 @@
    <section anchor="type_2" title="Type 2 - Source IPv6 Prefix" toc="include">
 	   <t>Encoding: &lt;type (1 octet), length (1 octet), offset (1 octet), pattern (variable), padding(variable) &gt;</t>
 	  <t>Defines the source prefix to match. The length, offset, pattern and padding
-          are the same as in <xref target="type_1" />
+          are the same as in <xref target="type_1" />.
 	  </t>
 	 </section>
    	 <section anchor="type_3" title="Type 3 - Upper-Layer Protocol">
