@@ -308,8 +308,8 @@
       </t>
       <t>This component uses the Numeric Operator (numeric_op) described in
       <xref target="I-D.ietf-idr-rfc5575bis" /> Section 4.2.1.1. Type 13
-      component values SHOULD be encoded as 1-, 2-, or 4-byte quantities
-      (numeric_op len=00, len=01 or len=10).
+      component values SHOULD be encoded as 4-octet quantities
+      (numeric_op len=10).
       </t>
 	 </section>
     <section title="Encoding Example" anchor="examples">
