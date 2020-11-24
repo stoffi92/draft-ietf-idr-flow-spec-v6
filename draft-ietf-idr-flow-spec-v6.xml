@@ -2,13 +2,15 @@
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
-<!ENTITY RFC8200 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8200.xml">
 <!ENTITY RFC4271 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4271.xml">
 <!ENTITY RFC4443 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4443.xml">
 <!ENTITY RFC4760 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4760.xml">
 <!ENTITY RFC5701 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5701.xml">
+<!ENTITY RFC7112 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7112.xml">
 <!ENTITY RFC7153 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7153.xml">
 <!ENTITY RFC8174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml">
+<!ENTITY RFC8200 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8200.xml">
+<!ENTITY RFC8883 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8883.xml">
 <!ENTITY I-D.ietf-idr-rfc5575bis SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-idr-rfc5575bis.xml">
 ]>
 <?rfc toc="yes" ?>
@@ -487,8 +489,16 @@
    <t>
    This document extends the functionality in <xref target="I-D.ietf-idr-rfc5575bis" /> to be applicable to
    IPv6 data packets. The same Security Considerations from <xref target="I-D.ietf-idr-rfc5575bis" />
-   now also apply to IPv6 networks. Otherwise, no new security issues are added
-   to the BGP protocol.
+   now also apply to IPv6 networks.
+   </t>
+   <t>
+   <xref target="RFC7112" /> describes the impact of oversized IPv6 header chains when trying to match on the transport 
+   header; <xref target="RFC8200" /> Section 4.5 also requires that the first fragment must include the upper-layer 
+   header but there could be wrongly formatted packets not respecting <xref target="RFC8200" />. IPv6 Flow Specification 
+   component type 3 (<xref target="type_3"/>) will not be enforced for those illegal packets. Moreover, 
+   there are hardware limitations in several routers (<xref target="RFC8883" /> Section 1) that may make it impossible to 
+   enforce a policy signaled by a type 3 Flow Specification component or Flow Specification components 
+   that match on upper-layer properties of the packet.
    </t>
    </section>
    <section anchor="IANA" title="IANA Considerations">
@@ -691,13 +701,15 @@ Email: akarch@cisco.com
   <back>
     <references title="Normative References">
       &RFC2119;
-	  &RFC8200;
 	  &RFC4271;
       &RFC4443;
       &RFC4760;
 	  &RFC5701;
+      &RFC7112;
 	  &RFC7153;
       &RFC8174;
+	  &RFC8200;
+      &RFC8883;
       &I-D.ietf-idr-rfc5575bis;
 	</references>
     <section title="Example python code: flow_rule_cmp_v6" anchor="flow_rule_cmp_src">
