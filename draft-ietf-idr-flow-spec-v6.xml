@@ -457,12 +457,12 @@
 	<section title="IPv6 Traffic Filtering Action changes">
 	<t>Traffic Filtering Actions from <xref target="I-D.ietf-idr-rfc5575bis" />
         Section 7 can also be applied to IPv6 Flow Specifications. To allow
-        an IPv6 address specific route-target, a new Traffic Filtering
-        Action IPv6 address specific extended community is specified in
+        an IPv6-Address-Specific Route-Target, a new Traffic Filtering
+        Action IPv6-Address-Specific Extended Community <xref target="RFC5701"></xref> is specified in
         <xref target="redirect_ipv6" /> below.
     </t>
     <section anchor="redirect_ipv6" title="Redirect IPv6 (rt-redirect-ipv6) Type TBD">
-       <t>The redirect IPv6-Address-Specific Extended Community
+       <t>The redirect IPv6-Address-Specific Extended Community 
        allows the traffic to be redirected to a VRF routing instance that
        lists the specified IPv6-Address-Specific Route-Target in its import
        policy.  If several local instances match this criteria, the choice
